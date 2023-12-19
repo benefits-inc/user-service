@@ -1,11 +1,10 @@
 package com.benefits.userservice.db.entity.address;
 
 import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
+import com.benefits.userservice.db.entity.users.UserEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
@@ -36,5 +35,10 @@ public class UserAddressEntity {
 
     @Column(length = 45, nullable = false)
     private String receiveMessage;
+
+    @ManyToOne
+    @ToString.Exclude
+    @JsonIgnore
+    private UserEntity user; // user_id
 
 }

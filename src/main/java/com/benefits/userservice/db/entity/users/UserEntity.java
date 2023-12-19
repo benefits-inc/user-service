@@ -1,5 +1,6 @@
 package com.benefits.userservice.db.entity.users;
 
+import com.benefits.userservice.db.entity.address.UserAddressEntity;
 import com.benefits.userservice.db.entity.profile.UserProfileEntity;
 import com.benefits.userservice.db.entity.users.enums.UserRole;
 import com.benefits.userservice.db.entity.users.enums.UserStatus;
@@ -8,6 +9,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -50,4 +52,9 @@ public class UserEntity {
     @ToString.Exclude
     @JsonIgnore
     private UserProfileEntity userProfile;
+
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    @JsonIgnore
+    private List<UserAddressEntity> userAddressEntityList;
 }
