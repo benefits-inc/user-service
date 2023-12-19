@@ -1,7 +1,9 @@
 package com.benefits.userservice.entity.users;
 
+import com.benefits.userservice.entity.profile.UserProfileEntity;
 import com.benefits.userservice.entity.users.enums.UserRole;
 import com.benefits.userservice.entity.users.enums.UserStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +22,7 @@ public class UserEntity {
     private Long id;
 
     @Column(length = 200, nullable = false, unique = true)
-    private String userId;
+    private String userUuid;
 
     @Column(length = 45, nullable = false)
     private String name;
@@ -47,8 +49,8 @@ public class UserEntity {
     private LocalDateTime lastLoginAt;
 
 
-    /*@OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user")
     @ToString.Exclude
     @JsonIgnore
-    private UserProfileEntity userProfile;*/
+    private UserProfileEntity userProfile;
 }
