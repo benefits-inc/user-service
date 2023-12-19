@@ -33,7 +33,7 @@ public class UserBusiness {
             var userEntity = userConverter.toEntity(request);
             var newUserEntity = userService.register(userEntity);
 
-            var userProfileEntity = userProfileService.userProfileRegister(userEntity.getUserId());
+            var userProfileEntity = userProfileService.userProfileRegister(newUserEntity);
             var userProfileResponse = userProfileConverter.toResponse(userProfileEntity);
 
             data = userConverter.toResponse(newUserEntity, userProfileResponse);
@@ -48,9 +48,8 @@ public class UserBusiness {
         var userEntities = userService.getAllUsers(pageable);
 
         var dataList = userEntities.stream().map(userEntity -> {
-//            var userProfileEntity = userProfileService.getUserProfile(userEntity.getUserId());
-//            var userProfileResponse = userProfileConverter.toResponse(userProfileEntity);
-            return userConverter.toResponse(userEntity);
+            var userProfileResponse = userProfileConverter.toResponse(userEntity.getUserProfile());
+            return userConverter.toResponse(userEntity, userProfileResponse);
         }).collect(Collectors.toList());
 
         var pagination = Pagination.toPagination(userEntities);
