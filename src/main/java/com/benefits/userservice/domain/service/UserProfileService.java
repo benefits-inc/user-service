@@ -5,6 +5,7 @@ import com.benefits.userservice.common.resultcode.UserResultCode;
 import com.benefits.userservice.entity.profile.UserProfileEntity;
 import com.benefits.userservice.domain.repository.UserProfileRepository;
 import com.benefits.userservice.entity.profile.enums.UserProfileGrade;
+import com.benefits.userservice.entity.users.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +14,16 @@ import org.springframework.stereotype.Service;
 public class UserProfileService {
     private final UserProfileRepository userProfileRepository;
 
-    public UserProfileEntity userProfileRegister(String userId){
+    public UserProfileEntity userProfileRegister(UserEntity userEntity){
         var userProfileEntity = UserProfileEntity.builder()
-                        .userId(userId)
+                        .user(userEntity)
+                        .userUuid(userEntity.getUserUuid())
                         .grade(UserProfileGrade.BRONZE)
                         .build();
         return userProfileRepository.save(userProfileEntity);
     }
 
-    public UserProfileEntity getUserProfile(String userId){
-        return userProfileRepository.findByUserId(userId).orElseThrow(() -> new ApiException(UserResultCode.BAD_REQUEST));
+    public UserProfileEntity getUserProfile(String userUuid){
+        return userProfileRepository.findByUserUuid(userUuid).orElseThrow(() -> new ApiException(UserResultCode.BAD_REQUEST));
     }
 }
