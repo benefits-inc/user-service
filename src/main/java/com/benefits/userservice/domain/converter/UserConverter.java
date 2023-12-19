@@ -21,6 +21,8 @@ public class UserConverter {
                 .build();
     }
 
+
+    // register response
     public UserResponse toResponse(UserEntity userEntity, UserProfileResponse userProfileResponse){
         return UserResponse.builder()
                 .id(userEntity.getId())

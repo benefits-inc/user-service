@@ -2,6 +2,7 @@ package com.benefits.userservice.domain.service;
 
 import com.benefits.userservice.common.exception.ApiException;
 import com.benefits.userservice.common.resultcode.ServerResultCode;
+import com.benefits.userservice.common.resultcode.UserResultCode;
 import com.benefits.userservice.db.entity.users.UserEntity;
 import com.benefits.userservice.db.repository.UserRepository;
 import com.benefits.userservice.db.entity.users.enums.UserRole;
@@ -37,4 +38,13 @@ public class UserService {
         return userRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
+    public UserEntity getUserById(Long id){
+        return userRepository.findById(id).orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
+    }
+
+    @Transactional(readOnly = true)
+    public UserEntity getUserByEmail(String email){
+        return userRepository.findByEmail(email).orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
+    }
 }

@@ -64,4 +64,28 @@ public class UserBusiness {
                 .pagination(pagination)
                 .build();
     }
+
+    public Api<UserResponse> getUserById(Long id){
+        var userEntity = userService.getUserById(id);
+
+        var userProfileResponse = userProfileConverter.toResponse(userEntity.getUserProfile());
+        var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
+
+        var data = userConverter.toResponse(userEntity, userProfileResponse, userAddressResponseList);
+        return Api.<UserResponse>builder()
+                .data(data)
+                .build();
+    }
+
+    public Api<UserResponse> getUserByEmail(String email){
+        var userEntity = userService.getUserByEmail(email);
+
+        var userProfileResponse = userProfileConverter.toResponse(userEntity.getUserProfile());
+        var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
+
+        var data = userConverter.toResponse(userEntity, userProfileResponse, userAddressResponseList);
+        return Api.<UserResponse>builder()
+                .data(data)
+                .build();
+    }
 }

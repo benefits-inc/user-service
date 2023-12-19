@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +30,17 @@ public class UserController {
                                                  Pageable pageable){
         var response = userBusiness.getAllUsers(pageable);
         return Api.OK(response.getData(), response.getPagination());
+    }
+
+    @GetMapping("/users/{id}")
+    public Api<UserResponse> getUserById(@PathVariable(name = "id") Long id){
+        var response = userBusiness.getUserById(id);
+        return Api.OK(response.getData());
+    }
+
+    @GetMapping(value = "/users", params = "email")
+    public Api<UserResponse> getUserByEmail(@RequestParam(value = "email") String email){
+        var response = userBusiness.getUserByEmail(email);
+        return Api.OK(response.getData());
     }
 }
