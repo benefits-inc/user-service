@@ -17,13 +17,12 @@ public class UserProfileService {
     public UserProfileEntity userProfileRegister(UserEntity userEntity){
         var userProfileEntity = UserProfileEntity.builder()
                         .user(userEntity)
-                        .userUuid(userEntity.getUserUuid())
                         .grade(UserProfileGrade.BRONZE)
                         .build();
         return userProfileRepository.save(userProfileEntity);
     }
 
-    public UserProfileEntity getUserProfile(String userUuid){
-        return userProfileRepository.findByUserUuid(userUuid).orElseThrow(() -> new ApiException(UserResultCode.BAD_REQUEST));
-    }
+    /*public UserProfileEntity getUserProfile(String userUuid){
+        return userProfileRepository.
+    }*/
 }

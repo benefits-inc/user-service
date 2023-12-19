@@ -18,9 +18,6 @@ public class UserAddressEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 200, nullable = false) // not unique 3개까지
-    private String userUuid;
-
     @Column(length = 45, nullable = false)
     private String receiver;
 

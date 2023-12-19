@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserAddressResponse {
     private Long id; // 3개까지 가능하니 이 id를 갖고 수정
-    private String userId;
+    private Long userId;
     private String receiver;
     private String address1;
     private String address2;

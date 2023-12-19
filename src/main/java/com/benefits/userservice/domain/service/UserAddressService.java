@@ -10,6 +10,5 @@ import org.springframework.stereotype.Service;
 public class UserAddressService {
     private final UserAddressRepository userAddressRepository;
 
-    public void test(){
-    }
+
 }

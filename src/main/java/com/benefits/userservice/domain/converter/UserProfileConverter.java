@@ -9,7 +9,7 @@ public class UserProfileConverter {
     public UserProfileResponse toResponse(UserProfileEntity userProfileEntity){
         return UserProfileResponse.builder()
                 .id(userProfileEntity.getId())
-                .userUuid(userProfileEntity.getUser().getUserUuid())
+                .userId(userProfileEntity.getUser().getId())
                 .grade(userProfileEntity.getGrade())
                 .build();
     }

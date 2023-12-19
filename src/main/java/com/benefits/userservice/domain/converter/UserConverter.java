@@ -12,7 +12,6 @@ import java.util.UUID;
 public class UserConverter {
     public UserEntity toEntity(UserRequest request){
         return UserEntity.builder()
-                .userUuid("USER-" + UUID.randomUUID().toString())
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(request.getPassword())
@@ -23,7 +22,6 @@ public class UserConverter {
     public UserResponse toResponse(UserEntity userEntity, UserProfileResponse userProfileResponse){
         return UserResponse.builder()
                 .id(userEntity.getId())
-                .userUuid(userEntity.getUserUuid())
                 .name(userEntity.getName())
                 .email(userEntity.getEmail())
                 .phone(userEntity.getPhone())
@@ -37,7 +35,6 @@ public class UserConverter {
     public UserResponse toResponse(UserEntity userEntity){
         return UserResponse.builder()
                 .id(userEntity.getId())
-                .userUuid(userEntity.getUserUuid())
                 .name(userEntity.getName())
                 .email(userEntity.getEmail())
                 .phone(userEntity.getPhone())
