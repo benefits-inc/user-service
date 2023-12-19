@@ -1,4 +1,4 @@
-package com.benefits.userservice.domain.model;
+package com.benefits.userservice.domain.model.response;
 
 
 import com.benefits.userservice.entity.users.enums.UserStatus;

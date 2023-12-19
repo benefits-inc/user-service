@@ -1,4 +1,4 @@
-package com.benefits.userservice.domain.model;
+package com.benefits.userservice.domain.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

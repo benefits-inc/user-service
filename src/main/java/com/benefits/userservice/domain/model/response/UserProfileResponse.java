@@ -1,4 +1,4 @@
-package com.benefits.userservice.domain.model;
+package com.benefits.userservice.domain.model.response;
 
 import com.benefits.userservice.entity.profile.enums.UserProfileGrade;
 import lombok.AllArgsConstructor;
