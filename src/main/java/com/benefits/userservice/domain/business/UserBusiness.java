@@ -3,10 +3,12 @@ package com.benefits.userservice.domain.business;
 import com.benefits.userservice.common.annotation.Business;
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.common.spec.Pagination;
+import com.benefits.userservice.domain.converter.UserAddressConverter;
 import com.benefits.userservice.domain.converter.UserConverter;
 import com.benefits.userservice.domain.converter.UserProfileConverter;
 import com.benefits.userservice.domain.controller.model.request.UserRequest;
 import com.benefits.userservice.domain.controller.model.response.UserResponse;
+import com.benefits.userservice.domain.service.UserAddressService;
 import com.benefits.userservice.domain.service.UserProfileService;
 import com.benefits.userservice.domain.service.UserService;
 import lombok.AllArgsConstructor;
@@ -24,6 +26,8 @@ public class UserBusiness {
     private final UserProfileService userProfileService;
     private final UserConverter userConverter;
     private final UserProfileConverter userProfileConverter;
+    private final UserAddressService userAddressService;
+    private final UserAddressConverter userAddressConverter;
 
 
     @Transactional
@@ -49,7 +53,8 @@ public class UserBusiness {
 
         var dataList = userEntities.stream().map(userEntity -> {
             var userProfileResponse = userProfileConverter.toResponse(userEntity.getUserProfile());
-            return userConverter.toResponse(userEntity, userProfileResponse);
+            var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
+            return userConverter.toResponse(userEntity, userProfileResponse, userAddressResponseList);
         }).collect(Collectors.toList());
 
         var pagination = Pagination.toPagination(userEntities);
