@@ -22,13 +22,14 @@ public class UserService {
 
     public UserEntity register(UserEntity userEntity){
 
-        return Optional.ofNullable(userEntity)
-                        .map(ue -> {
-                            ue.setRole(UserRole.USER);
-                            ue.setStatus(UserStatus.REGISTERED);
-                            ue.setRegisteredAt(LocalDateTime.now());
-                            return ue;
-                        }).orElseThrow(()-> new ApiException(ServerResultCode.NULL_POINT_ERROR, "UserEntity is Null"));
+        var saveUserEntity = Optional.ofNullable(userEntity)
+                .map(ue -> {
+                    ue.setRole(UserRole.USER);
+                    ue.setStatus(UserStatus.REGISTERED);
+                    ue.setRegisteredAt(LocalDateTime.now());
+                    return ue;
+                }).orElseThrow(()-> new ApiException(ServerResultCode.NULL_POINT_ERROR, "UserEntity is Null"));
+        return userRepository.save(saveUserEntity);
     }
 
     @Transactional(readOnly = true)
