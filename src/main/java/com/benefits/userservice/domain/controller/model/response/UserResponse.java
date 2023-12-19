@@ -2,6 +2,7 @@ package com.benefits.userservice.domain.controller.model.response;
 
 
 import com.benefits.userservice.db.entity.users.enums.UserStatus;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +27,9 @@ public class UserResponse {
     private LocalDateTime unregisteredAt;
     private LocalDateTime lastLoginAt;
 
+    @JsonProperty(value = "profile")
     private UserProfileResponse userProfileResponse;
+
+    @JsonProperty(value = "address_list")
     private List<UserAddressResponse> userAddressResponseList;
 }
