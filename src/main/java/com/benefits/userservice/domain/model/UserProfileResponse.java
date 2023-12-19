@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class UserProfileResponse {
     private Long id;
 
-    private String userId;
+    private String userUuid;
 
     private String profileImageUrl;
 
