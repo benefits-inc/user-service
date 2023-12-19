@@ -1,6 +1,6 @@
-package com.benefits.userservice.domain.model.request;
+package com.benefits.userservice.domain.controller.model.request;
 
-import com.benefits.userservice.entity.address.enums.UserReceiveType;
+import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;

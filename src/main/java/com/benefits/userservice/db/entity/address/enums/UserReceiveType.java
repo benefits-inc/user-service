@@ -1,4 +1,4 @@
-package com.benefits.userservice.entity.address.enums;
+package com.benefits.userservice.db.entity.address.enums;
 
 import lombok.AllArgsConstructor;
 

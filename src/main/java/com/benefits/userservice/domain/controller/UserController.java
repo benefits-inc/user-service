@@ -2,8 +2,8 @@ package com.benefits.userservice.domain.controller;
 
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.domain.business.UserBusiness;
-import com.benefits.userservice.domain.model.request.UserRequest;
-import com.benefits.userservice.domain.model.response.UserResponse;
+import com.benefits.userservice.domain.controller.model.request.UserRequest;
+import com.benefits.userservice.domain.controller.model.response.UserResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

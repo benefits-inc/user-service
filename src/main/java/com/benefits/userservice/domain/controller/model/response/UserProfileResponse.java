@@ -1,6 +1,6 @@
-package com.benefits.userservice.domain.model.response;
+package com.benefits.userservice.domain.controller.model.response;
 
-import com.benefits.userservice.entity.profile.enums.UserProfileGrade;
+import com.benefits.userservice.db.entity.profile.enums.UserProfileGrade;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

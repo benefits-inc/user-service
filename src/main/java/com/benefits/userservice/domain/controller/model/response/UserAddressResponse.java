@@ -1,6 +1,6 @@
-package com.benefits.userservice.domain.model.response;
+package com.benefits.userservice.domain.controller.model.response;
 
-import com.benefits.userservice.entity.address.enums.UserReceiveType;
+import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.benefits.userservice.domain.model.response;
+package com.benefits.userservice.domain.controller.model.response;
 
 
-import com.benefits.userservice.entity.users.enums.UserStatus;
+import com.benefits.userservice.db.entity.users.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,12 +1,10 @@
 package com.benefits.userservice.domain.converter;
 
 import com.benefits.userservice.common.annotation.Converter;
-import com.benefits.userservice.domain.model.response.UserProfileResponse;
-import com.benefits.userservice.domain.model.request.UserRequest;
-import com.benefits.userservice.domain.model.response.UserResponse;
-import com.benefits.userservice.entity.users.UserEntity;
-
-import java.util.UUID;
+import com.benefits.userservice.domain.controller.model.response.UserProfileResponse;
+import com.benefits.userservice.domain.controller.model.request.UserRequest;
+import com.benefits.userservice.domain.controller.model.response.UserResponse;
+import com.benefits.userservice.db.entity.users.UserEntity;
 
 @Converter
 public class UserConverter {

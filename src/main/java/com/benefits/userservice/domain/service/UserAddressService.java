@@ -1,6 +1,6 @@
 package com.benefits.userservice.domain.service;
 
-import com.benefits.userservice.domain.repository.UserAddressRepository;
+import com.benefits.userservice.db.repository.UserAddressRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

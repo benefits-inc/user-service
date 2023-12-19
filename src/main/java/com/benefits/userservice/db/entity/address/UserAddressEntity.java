@@ -1,6 +1,6 @@
-package com.benefits.userservice.entity.address;
+package com.benefits.userservice.db.entity.address;
 
-import com.benefits.userservice.entity.address.enums.UserReceiveType;
+import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

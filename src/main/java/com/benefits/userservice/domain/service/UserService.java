@@ -2,10 +2,10 @@ package com.benefits.userservice.domain.service;
 
 import com.benefits.userservice.common.exception.ApiException;
 import com.benefits.userservice.common.resultcode.ServerResultCode;
-import com.benefits.userservice.entity.users.UserEntity;
-import com.benefits.userservice.domain.repository.UserRepository;
-import com.benefits.userservice.entity.users.enums.UserRole;
-import com.benefits.userservice.entity.users.enums.UserStatus;
+import com.benefits.userservice.db.entity.users.UserEntity;
+import com.benefits.userservice.db.repository.UserRepository;
+import com.benefits.userservice.db.entity.users.enums.UserRole;
+import com.benefits.userservice.db.entity.users.enums.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

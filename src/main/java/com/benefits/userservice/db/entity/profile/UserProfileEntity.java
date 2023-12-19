@@ -1,7 +1,7 @@
-package com.benefits.userservice.entity.profile;
+package com.benefits.userservice.db.entity.profile;
 
-import com.benefits.userservice.entity.profile.enums.UserProfileGrade;
-import com.benefits.userservice.entity.users.UserEntity;
+import com.benefits.userservice.db.entity.users.UserEntity;
+import com.benefits.userservice.db.entity.profile.enums.UserProfileGrade;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
