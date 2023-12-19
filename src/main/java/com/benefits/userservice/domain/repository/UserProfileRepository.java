@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface UserProfileRepository  extends JpaRepository<UserProfileEntity, Long> {
 
-    Optional<UserProfileEntity> findByUserId(String userId);
+    Optional<UserProfileEntity> findByUserUuid(String userUuid);
 }
