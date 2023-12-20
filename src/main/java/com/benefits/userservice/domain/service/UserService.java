@@ -35,17 +35,19 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public Page<UserEntity> getAllUsers(Pageable pageable){
-        return userRepository.findAll(pageable);
+        return userRepository.findAllByStatus(pageable, UserStatus.REGISTERED);
     }
 
     @Transactional(readOnly = true)
     public UserEntity getUserByIdWithThrow(Long id){
-        return userRepository.findById(id).orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
+        return userRepository.findByIdAndStatus(id, UserStatus.REGISTERED)
+                .orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
     }
 
     @Transactional(readOnly = true)
     public UserEntity getUserByEmailWithThrow(String email){
-        return userRepository.findByEmail(email).orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
+        return userRepository.findByEmailAndStatus(email, UserStatus.REGISTERED)
+                .orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
     }
 
 
@@ -55,8 +57,8 @@ public class UserService {
         return userRepository.save(updateUserEntity);
     }
 
-
     public void deleteUser(UserEntity userEntity){
+        userEntity.setUnregisteredAt(LocalDateTime.now());
         userRepository.save(userEntity);
     }
 
