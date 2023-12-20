@@ -9,7 +9,7 @@ import com.benefits.userservice.domain.address.model.UserAddressRequest;
 import com.benefits.userservice.domain.address.model.UserAddressResponse;
 import com.benefits.userservice.domain.address.converter.UserAddressConverter;
 import com.benefits.userservice.domain.address.service.UserAddressService;
-import com.benefits.userservice.domain.profiles.service.UserService;
+import com.benefits.userservice.domain.users.service.UserService;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

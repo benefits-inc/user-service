@@ -5,7 +5,7 @@ import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.domain.profiles.model.UserProfileRequest;
 import com.benefits.userservice.domain.profiles.model.UserProfileResponse;
 import com.benefits.userservice.domain.profiles.converter.UserProfileConverter;
-import com.benefits.userservice.domain.users.service.UserProfileService;
+import com.benefits.userservice.domain.profiles.service.UserProfileService;
 import lombok.AllArgsConstructor;
 
 @Business
