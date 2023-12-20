@@ -1,4 +1,4 @@
-package com.benefits.userservice.domain.profiles.service;
+package com.benefits.userservice.domain.users.service;
 
 import com.benefits.userservice.common.exception.ApiException;
 import com.benefits.userservice.common.resultcode.ServerResultCode;
@@ -10,6 +10,7 @@ import com.benefits.userservice.db.entity.users.enums.UserStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,8 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
     public UserEntity register(UserEntity userEntity){
@@ -26,6 +29,7 @@ public class UserService {
         var saveUserEntity = Optional.ofNullable(userEntity)
                 .map(ue -> {
                     ue.setRole(UserRole.USER);
+                    ue.setPassword(passwordEncoder.encode(userEntity.getPassword()));
                     ue.setStatus(UserStatus.REGISTERED);
                     ue.setRegisteredAt(LocalDateTime.now());
                     return ue;
