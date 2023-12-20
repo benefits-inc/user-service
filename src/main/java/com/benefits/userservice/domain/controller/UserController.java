@@ -43,4 +43,17 @@ public class UserController {
         var response = userBusiness.getUserByEmail(email);
         return Api.OK(response.getData());
     }
+
+    @PutMapping("/users/{id}")
+    public Api<UserResponse> updateUser(@PathVariable(name = "id") Long id,
+                                        @RequestBody @Valid UserRequest request){
+        var response = userBusiness.updateUser(id, request);
+        return Api.OK(response.getData());
+    }
+
+    @DeleteMapping("/users/{id}")
+    public Api<UserResponse> deleteUser(@PathVariable(name = "id") Long id){
+        userBusiness.deleteUser(id);
+        return Api.OK(null);
+    }
 }

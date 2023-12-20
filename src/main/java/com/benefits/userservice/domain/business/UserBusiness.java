@@ -3,6 +3,7 @@ package com.benefits.userservice.domain.business;
 import com.benefits.userservice.common.annotation.Business;
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.common.spec.Pagination;
+import com.benefits.userservice.db.entity.users.enums.UserStatus;
 import com.benefits.userservice.domain.converter.UserAddressConverter;
 import com.benefits.userservice.domain.converter.UserConverter;
 import com.benefits.userservice.domain.converter.UserProfileConverter;
@@ -66,7 +67,7 @@ public class UserBusiness {
     }
 
     public Api<UserResponse> getUserById(Long id){
-        var userEntity = userService.getUserById(id);
+        var userEntity = userService.getUserByIdWithThrow(id);
 
         var userProfileResponse = userProfileConverter.toResponse(userEntity.getUserProfile());
         var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
@@ -78,7 +79,7 @@ public class UserBusiness {
     }
 
     public Api<UserResponse> getUserByEmail(String email){
-        var userEntity = userService.getUserByEmail(email);
+        var userEntity = userService.getUserByEmailWithThrow(email);
 
         var userProfileResponse = userProfileConverter.toResponse(userEntity.getUserProfile());
         var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
@@ -87,5 +88,30 @@ public class UserBusiness {
         return Api.<UserResponse>builder()
                 .data(data)
                 .build();
+    }
+
+    public Api<UserResponse> updateUser(Long id, UserRequest request){
+
+        var userEntity = userService.getUserByIdWithThrow(id);
+        userEntity.setEmail(request.getEmail());
+        userEntity.setName(request.getName());
+        userEntity.setPassword(request.getPassword());
+        userEntity.setPhone(request.getPhone());
+
+        var updatedUserEntity = userService.updateUser(userEntity);
+
+        var userProfileResponse = userProfileConverter.toResponse(updatedUserEntity.getUserProfile());
+        var userAddressResponseList = userAddressConverter.toResponseList(updatedUserEntity.getUserAddressEntityList());
+
+        var data = userConverter.toResponse(updatedUserEntity, userProfileResponse, userAddressResponseList);
+        return Api.<UserResponse>builder()
+                .data(data)
+                .build();
+    }
+
+    public void deleteUser(Long id){
+        var userEntity = userService.getUserByIdWithThrow(id);
+        userEntity.setStatus(UserStatus.UNREGISTERED);
+        userService.deleteUser(userEntity);
     }
 }

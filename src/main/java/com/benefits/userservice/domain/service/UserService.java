@@ -39,12 +39,25 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public UserEntity getUserById(Long id){
+    public UserEntity getUserByIdWithThrow(Long id){
         return userRepository.findById(id).orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
     }
 
     @Transactional(readOnly = true)
-    public UserEntity getUserByEmail(String email){
+    public UserEntity getUserByEmailWithThrow(String email){
         return userRepository.findByEmail(email).orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
     }
+
+
+    public UserEntity updateUser(UserEntity userEntity){
+        var updateUserEntity = Optional.ofNullable(userEntity)
+                .orElseThrow(()-> new ApiException(ServerResultCode.NULL_POINT_ERROR, "UserEntity is Null"));
+        return userRepository.save(updateUserEntity);
+    }
+
+
+    public void deleteUser(UserEntity userEntity){
+        userRepository.save(userEntity);
+    }
+
 }
