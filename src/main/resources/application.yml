@@ -29,6 +29,10 @@ gateway:
   ip: '127.0.0.1/'
   subnet: '24'
 
+#logging:
+#  level:
+#    com.example.userservice.client: DEBUG
+
 #eureka:
 #  client:
 #    register-with-eureka: true

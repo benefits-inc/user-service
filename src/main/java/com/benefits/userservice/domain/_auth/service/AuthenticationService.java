@@ -1,6 +1,7 @@
 package com.benefits.userservice.domain._auth.service;
 
 import com.benefits.userservice.config.security.auth.model.UserSession;
+import com.benefits.userservice.db.entity.users.UserEntity;
 import com.benefits.userservice.domain._auth.model.TokenResponse;
 import com.benefits.userservice.domain._token.service.TokenService;
 import lombok.RequiredArgsConstructor;

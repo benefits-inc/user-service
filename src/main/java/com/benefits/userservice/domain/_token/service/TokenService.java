@@ -2,6 +2,7 @@ package com.benefits.userservice.domain._token.service;
 
 
 import com.benefits.userservice.config.security.auth.model.UserSession;
+import com.benefits.userservice.db.entity.users.UserEntity;
 import com.benefits.userservice.domain._token.ifs.TokenHelperIfs;
 import com.benefits.userservice.domain._token.model.TokenDto;
 import lombok.RequiredArgsConstructor;

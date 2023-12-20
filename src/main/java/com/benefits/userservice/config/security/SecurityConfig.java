@@ -1,5 +1,6 @@
 package com.benefits.userservice.config.security;
 
+import com.benefits.userservice.config.security.auth.service.AuthorizationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.EnvironmentAware;
@@ -7,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -50,7 +54,7 @@ public class SecurityConfig implements EnvironmentAware {
                             .anyRequest().authenticated();
                     })
                     .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                    .httpBasic(Customizer.withDefaults())
+                    //.httpBasic(Customizer.withDefaults())
                     .build();
 
     }
@@ -62,6 +66,17 @@ public class SecurityConfig implements EnvironmentAware {
 
         IpAddressMatcher ALLOWED_IP_ADDRESS_MATCHER = new IpAddressMatcher(ALLOWED_IP_ADDRESS + SUBNET);
         return new AuthorizationDecision(ALLOWED_IP_ADDRESS_MATCHER.matches(object.getRequest()));
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(
+            AuthorizationService userDetailsService,
+            PasswordEncoder passwordEncoder) {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
+
+        return new ProviderManager(authenticationProvider);
     }
     @Bean
     public PasswordEncoder passwordEncoder(){
