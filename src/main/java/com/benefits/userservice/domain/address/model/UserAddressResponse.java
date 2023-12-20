@@ -1,4 +1,4 @@
-package com.benefits.userservice.domain.controller.model.response;
+package com.benefits.userservice.domain.address.model;
 
 import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
 import lombok.AllArgsConstructor;

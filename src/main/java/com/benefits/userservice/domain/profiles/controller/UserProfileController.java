@@ -1,11 +1,9 @@
-package com.benefits.userservice.domain.controller;
+package com.benefits.userservice.domain.profiles.controller;
 
 import com.benefits.userservice.common.spec.Api;
-import com.benefits.userservice.domain.business.UserProfileBusiness;
-import com.benefits.userservice.domain.controller.model.request.UserProfileRequest;
-import com.benefits.userservice.domain.controller.model.request.UserRequest;
-import com.benefits.userservice.domain.controller.model.response.UserProfileResponse;
-import com.benefits.userservice.domain.controller.model.response.UserResponse;
+import com.benefits.userservice.domain.profiles.business.UserProfileBusiness;
+import com.benefits.userservice.domain.profiles.model.UserProfileRequest;
+import com.benefits.userservice.domain.profiles.model.UserProfileResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

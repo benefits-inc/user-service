@@ -1,10 +1,10 @@
-package com.benefits.userservice.domain.controller;
+package com.benefits.userservice.domain.address.controller;
 
 import com.benefits.userservice.common.spec.Api;
-import com.benefits.userservice.domain.business.UserAddressBusiness;
-import com.benefits.userservice.domain.controller.model.request.UserAddressRequest;
-import com.benefits.userservice.domain.controller.model.response.UserAddressResponse;
-import com.benefits.userservice.domain.controller.model.response.UserResponse;
+import com.benefits.userservice.domain.address.business.UserAddressBusiness;
+import com.benefits.userservice.domain.address.model.UserAddressRequest;
+import com.benefits.userservice.domain.address.model.UserAddressResponse;
+import com.benefits.userservice.domain.users.model.UserResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

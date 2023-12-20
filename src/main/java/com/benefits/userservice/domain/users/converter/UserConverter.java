@@ -1,14 +1,13 @@
-package com.benefits.userservice.domain.converter;
+package com.benefits.userservice.domain.users.converter;
 
 import com.benefits.userservice.common.annotation.Converter;
-import com.benefits.userservice.domain.controller.model.response.UserAddressResponse;
-import com.benefits.userservice.domain.controller.model.response.UserProfileResponse;
-import com.benefits.userservice.domain.controller.model.request.UserRequest;
-import com.benefits.userservice.domain.controller.model.response.UserResponse;
+import com.benefits.userservice.domain.address.model.UserAddressResponse;
+import com.benefits.userservice.domain.profiles.model.UserProfileResponse;
+import com.benefits.userservice.domain.users.model.UserRequest;
+import com.benefits.userservice.domain.users.model.UserResponse;
 import com.benefits.userservice.db.entity.users.UserEntity;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Converter
 public class UserConverter {

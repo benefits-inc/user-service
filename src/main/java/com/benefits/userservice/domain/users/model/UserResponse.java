@@ -1,7 +1,9 @@
-package com.benefits.userservice.domain.controller.model.response;
+package com.benefits.userservice.domain.users.model;
 
 
 import com.benefits.userservice.db.entity.users.enums.UserStatus;
+import com.benefits.userservice.domain.address.model.UserAddressResponse;
+import com.benefits.userservice.domain.profiles.model.UserProfileResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

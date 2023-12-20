@@ -1,7 +1,7 @@
-package com.benefits.userservice.domain.converter;
+package com.benefits.userservice.domain.profiles.converter;
 
 import com.benefits.userservice.common.annotation.Converter;
-import com.benefits.userservice.domain.controller.model.response.UserProfileResponse;
+import com.benefits.userservice.domain.profiles.model.UserProfileResponse;
 import com.benefits.userservice.db.entity.profile.UserProfileEntity;
 
 @Converter

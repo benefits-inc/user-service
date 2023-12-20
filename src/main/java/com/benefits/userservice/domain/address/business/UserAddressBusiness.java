@@ -1,15 +1,15 @@
-package com.benefits.userservice.domain.business;
+package com.benefits.userservice.domain.address.business;
 
 import com.benefits.userservice.common.annotation.Business;
 import com.benefits.userservice.common.exception.ApiException;
 import com.benefits.userservice.common.resultcode.UserResultCode;
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
-import com.benefits.userservice.domain.controller.model.request.UserAddressRequest;
-import com.benefits.userservice.domain.controller.model.response.UserAddressResponse;
-import com.benefits.userservice.domain.converter.UserAddressConverter;
-import com.benefits.userservice.domain.service.UserAddressService;
-import com.benefits.userservice.domain.service.UserService;
+import com.benefits.userservice.domain.address.model.UserAddressRequest;
+import com.benefits.userservice.domain.address.model.UserAddressResponse;
+import com.benefits.userservice.domain.address.converter.UserAddressConverter;
+import com.benefits.userservice.domain.address.service.UserAddressService;
+import com.benefits.userservice.domain.profiles.service.UserService;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

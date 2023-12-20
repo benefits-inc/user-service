@@ -1,4 +1,4 @@
-package com.benefits.userservice.domain.service;
+package com.benefits.userservice.domain.users.service;
 
 import com.benefits.userservice.common.exception.ApiException;
 import com.benefits.userservice.common.resultcode.UserResultCode;

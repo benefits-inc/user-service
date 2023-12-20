@@ -1,11 +1,11 @@
-package com.benefits.userservice.domain.business;
+package com.benefits.userservice.domain.profiles.business;
 
 import com.benefits.userservice.common.annotation.Business;
 import com.benefits.userservice.common.spec.Api;
-import com.benefits.userservice.domain.controller.model.request.UserProfileRequest;
-import com.benefits.userservice.domain.controller.model.response.UserProfileResponse;
-import com.benefits.userservice.domain.converter.UserProfileConverter;
-import com.benefits.userservice.domain.service.UserProfileService;
+import com.benefits.userservice.domain.profiles.model.UserProfileRequest;
+import com.benefits.userservice.domain.profiles.model.UserProfileResponse;
+import com.benefits.userservice.domain.profiles.converter.UserProfileConverter;
+import com.benefits.userservice.domain.users.service.UserProfileService;
 import lombok.AllArgsConstructor;
 
 @Business

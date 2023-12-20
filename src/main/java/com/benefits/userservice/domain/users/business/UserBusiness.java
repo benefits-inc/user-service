@@ -1,17 +1,17 @@
-package com.benefits.userservice.domain.business;
+package com.benefits.userservice.domain.users.business;
 
 import com.benefits.userservice.common.annotation.Business;
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.common.spec.Pagination;
 import com.benefits.userservice.db.entity.users.enums.UserStatus;
-import com.benefits.userservice.domain.converter.UserAddressConverter;
-import com.benefits.userservice.domain.converter.UserConverter;
-import com.benefits.userservice.domain.converter.UserProfileConverter;
-import com.benefits.userservice.domain.controller.model.request.UserRequest;
-import com.benefits.userservice.domain.controller.model.response.UserResponse;
-import com.benefits.userservice.domain.service.UserAddressService;
-import com.benefits.userservice.domain.service.UserProfileService;
-import com.benefits.userservice.domain.service.UserService;
+import com.benefits.userservice.domain.address.converter.UserAddressConverter;
+import com.benefits.userservice.domain.users.converter.UserConverter;
+import com.benefits.userservice.domain.profiles.converter.UserProfileConverter;
+import com.benefits.userservice.domain.users.model.UserRequest;
+import com.benefits.userservice.domain.users.model.UserResponse;
+import com.benefits.userservice.domain.address.service.UserAddressService;
+import com.benefits.userservice.domain.users.service.UserProfileService;
+import com.benefits.userservice.domain.profiles.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package com.benefits.userservice.domain.controller.model.request;
+package com.benefits.userservice.domain.users.model;
 
 
 import jakarta.validation.constraints.Email;

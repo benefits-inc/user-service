@@ -1,11 +1,11 @@
-package com.benefits.userservice.domain.converter;
+package com.benefits.userservice.domain.address.converter;
 
 import com.benefits.userservice.common.annotation.Converter;
 import com.benefits.userservice.db.entity.address.UserAddressEntity;
 import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
 import com.benefits.userservice.db.entity.users.UserEntity;
-import com.benefits.userservice.domain.controller.model.request.UserAddressRequest;
-import com.benefits.userservice.domain.controller.model.response.UserAddressResponse;
+import com.benefits.userservice.domain.address.model.UserAddressRequest;
+import com.benefits.userservice.domain.address.model.UserAddressResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;

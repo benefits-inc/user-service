@@ -1,14 +1,13 @@
-package com.benefits.userservice.domain.controller;
+package com.benefits.userservice.domain.users.controller;
 
 import com.benefits.userservice.common.spec.Api;
-import com.benefits.userservice.domain.business.UserBusiness;
-import com.benefits.userservice.domain.controller.model.request.UserRequest;
-import com.benefits.userservice.domain.controller.model.response.UserResponse;
+import com.benefits.userservice.domain.users.business.UserBusiness;
+import com.benefits.userservice.domain.users.model.UserRequest;
+import com.benefits.userservice.domain.users.model.UserResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
