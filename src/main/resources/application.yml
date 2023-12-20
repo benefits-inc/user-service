@@ -17,6 +17,18 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root1234!!
+
+token:
+  secret:
+    key: asdffsdsdsdfsadsdfsdsdfsdfdsfsfs # 32 character, minimum 256bit // 512는 64character 512bit
+  access-token:
+    plus-hour: 1
+  refresh-token:
+    plus-hour: 12
+gateway:
+  ip: '127.0.0.1/'
+  subnet: '24'
+
 #eureka:
 #  client:
 #    register-with-eureka: true
