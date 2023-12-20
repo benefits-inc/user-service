@@ -10,6 +10,8 @@ public class UserProfileConverter {
         return UserProfileResponse.builder()
                 .id(userProfileEntity.getId())
                 .userId(userProfileEntity.getUser().getId())
+                .profileImageUrl(userProfileEntity.getProfileImageUrl())
+                .nickName(userProfileEntity.getNickName())
                 .grade(userProfileEntity.getGrade())
                 .build();
     }
