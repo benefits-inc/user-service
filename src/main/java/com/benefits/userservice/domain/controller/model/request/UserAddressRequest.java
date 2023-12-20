@@ -1,6 +1,5 @@
 package com.benefits.userservice.domain.controller.model.request;
 
-import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,8 +26,8 @@ public class UserAddressRequest {
     private String phone;
 
     @NotBlank
-    private UserReceiveType receiveType;
+    private String receiveType;
 
-    @NotBlank
+    @NotBlank(message = "배송 메시지는 필수 입니다")
     private String receiveMessage;
 }
