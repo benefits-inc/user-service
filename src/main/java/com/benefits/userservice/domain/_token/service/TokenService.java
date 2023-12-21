@@ -17,17 +17,17 @@ public class TokenService {
 
     private final TokenHelperIfs tokenHelperIfs;
 
-    public TokenDto issueAccessToken(UserSession userSession){
+    public TokenDto issueAccessToken(UserEntity userEntity){
         var data = new HashMap<String, Object>();
-        data.put("sub", userSession.getId());
-        data.put("email", userSession.getEmail());
+        data.put("sub", userEntity.getId());
+        data.put("email", userEntity.getEmail());
         return tokenHelperIfs.issueAccessToken(data);
     }
 
-    public TokenDto issueRefreshToken(UserSession userSession){
+    public TokenDto issueRefreshToken(UserEntity userEntity){
         var data = new HashMap<String, Object>();
-        data.put("sub", userSession.getId());
-        data.put("email", userSession.getEmail());
+        data.put("sub", userEntity.getId());
+        data.put("email", userEntity.getEmail());
         return tokenHelperIfs.issueRefreshToken(data);
     }
 
