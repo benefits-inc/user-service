@@ -14,9 +14,9 @@ public class AuthenticationService {
 
     private final TokenService tokenService;
 
-    public TokenResponse login(UserSession userSession) {
-        var accessTokenDto = tokenService.issueAccessToken(userSession);
-        var refreshTokenDto = tokenService.issueRefreshToken(userSession);
+    public TokenResponse login(UserEntity userEntity) {
+        var accessTokenDto = tokenService.issueAccessToken(userEntity);
+        var refreshTokenDto = tokenService.issueRefreshToken(userEntity);
 
         ResponseCookie responseCookie = ResponseCookie.from("refreshToken", refreshTokenDto.getToken())
                 .httpOnly(true)
@@ -33,4 +33,14 @@ public class AuthenticationService {
                 .build();
     }
 
+    public String validationToken(String refreshToken) {
+        return tokenService.validationToken(refreshToken);
+    }
+    public TokenResponse restore(UserEntity userEntity) {
+        var accessTokenDto = tokenService.issueAccessToken(userEntity);
+        return TokenResponse.builder()
+                .accessToken(accessTokenDto.getToken())
+                .expiredAt(accessTokenDto.getExpiredAt())
+                .build();
+    }
 }
