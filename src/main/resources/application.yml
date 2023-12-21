@@ -1,5 +1,5 @@
 server:
-  port: 3000
+  port: 0
 
 spring:
   application:
@@ -33,11 +33,11 @@ gateway:
 #  level:
 #    com.example.userservice.client: DEBUG
 
-#eureka:
-#  client:
-#    register-with-eureka: true
-#    fetch-registry: true
-#    service-url:
-#      default-zone: http://127.0.0.1:8761/eureka
-#  instance:
-#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
