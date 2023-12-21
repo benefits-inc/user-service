@@ -1,5 +1,7 @@
 package com.benefits.userservice.domain._token.helper;
 
+import com.benefits.userservice.common.exception.ApiException;
+import com.benefits.userservice.common.resultcode.TokenResultCode;
 import com.benefits.userservice.domain._token.ifs.TokenHelperIfs;
 import com.benefits.userservice.domain._token.model.TokenDto;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -91,16 +93,15 @@ public class JwtTokenHelper implements TokenHelperIfs {
             return new HashMap<String, Object>(result.getBody());
 
         }catch (Exception e){
-            // 공통 exception처리 하고  에러코드 추가 해야함 (프론트에서 상태값으로 리프레시 재시도할지 로그인 할지 결정하게 해줘야함)
             if(e instanceof SignatureException){
                 // 토큰이 유효하지 않을 때
-                throw new RuntimeException("유효하지 않은 토큰");
+                throw new ApiException(TokenResultCode.INVALID_TOKEN);
             } else if (e instanceof ExpiredJwtException) {
                 // 만료된 토큰
-                throw new RuntimeException("만료된 토큰입니다");
+                throw new ApiException(TokenResultCode.EXPIRED_TOKEN);
             }else {
                 // 그 외 예외
-                throw new RuntimeException("알수 없는 토큰에러");
+                throw new ApiException(TokenResultCode.TOKEN_EXCEPTION);
             }
         }
     }
