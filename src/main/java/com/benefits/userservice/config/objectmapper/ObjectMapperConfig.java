@@ -1,9 +1,6 @@
 package com.benefits.userservice.config.objectmapper;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
@@ -25,8 +22,8 @@ public class ObjectMapperConfig {
         // 날짜 관련 직렬화 disable
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        // 스네이크 케이스 디폴트
-        objectMapper.setPropertyNamingStrategy(new PropertyNamingStrategies.SnakeCaseStrategy());
+        // 스네이크 케이스 디폴트 (bushrefresh 기능관련 문제 생겨서 일단 주석)
+//        objectMapper.setPropertyNamingStrategy(new PropertyNamingStrategies.SnakeCaseStrategy());
 
         return objectMapper;
     }
