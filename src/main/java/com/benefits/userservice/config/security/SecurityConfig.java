@@ -40,7 +40,7 @@ public class SecurityConfig implements EnvironmentAware {
     public void setEnvironment(final Environment env) {
         this.env = env;
     }
-    private static final String [] WHITE_LIST = {"/actuator", "/login", "restore"};
+    private static final String [] WHITE_LIST = {"/actuator/**", "/login", "restore"};
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         return
