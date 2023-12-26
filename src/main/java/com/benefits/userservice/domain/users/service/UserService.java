@@ -29,7 +29,7 @@ public class UserService {
         var saveUserEntity = Optional.ofNullable(userEntity)
                 .map(ue -> {
                     ue.setRole(UserRole.USER);
-                    ue.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+                    ue.setPassword(passwordEncoder.encode(ue.getPassword()));
                     ue.setStatus(UserStatus.REGISTERED);
                     ue.setRegisteredAt(LocalDateTime.now());
                     return ue;
