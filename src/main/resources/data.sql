@@ -16,6 +16,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `users`.`profiles` (
   `id` BIGINT(32) NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT(32) NOT NULL,
   `profile_image_url` VARCHAR(200) NULL,
   `nick_name` VARCHAR(45) NULL,
   `grade` ENUM('BRONZE', 'SILVER', 'GOLD') NOT NULL DEFAULT 'BRONZE' COMMENT 'BRONZE, SILVER, GOLD',
@@ -25,6 +26,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `users`.`address` (
   `id` BIGINT(32) NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT(32) NOT NULL,
   `receiver` VARCHAR(45) NOT NULL,
   `address1` VARCHAR(200) NOT NULL,
   `address2` VARCHAR(200) NOT NULL,
