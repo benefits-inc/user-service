@@ -23,6 +23,9 @@ public class UserAddressRequest {
     private String address2;
 
     @NotBlank
+    private String zipcode;
+
+    @NotBlank
     private String phone;
 
     @NotBlank

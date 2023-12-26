@@ -16,6 +16,7 @@ public class UserAddressResponse {
     private String receiver;
     private String address1;
     private String address2;
+    private String zipcode;
     private String phone;
     private UserReceiveType receiveType;
     private String receiveMessage;
