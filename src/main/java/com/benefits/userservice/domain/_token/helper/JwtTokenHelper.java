@@ -32,7 +32,7 @@ public class JwtTokenHelper implements TokenHelperIfs {
 
     @Override
     public TokenDto issueAccessToken(Map<String, Object> data) {
-        var secretKey = Objects.requireNonNull(env.getProperty("token.secret.key"));
+        var secretKey = Objects.requireNonNull(env.getProperty("token.secret.user.key"));
         var accessTokenPlusHour = Long.parseLong(Objects.requireNonNull(env.getProperty("token.access-token.plus-hour")));
 
         var accessTokenExpiredLocaldateTime = LocalDateTime.now().plusHours(accessTokenPlusHour);
@@ -55,7 +55,7 @@ public class JwtTokenHelper implements TokenHelperIfs {
 
     @Override
     public TokenDto issueRefreshToken(Map<String, Object> data) {
-        var secretKey = Objects.requireNonNull(env.getProperty("token.secret.key"));
+        var secretKey = Objects.requireNonNull(env.getProperty("token.secret.user.key"));
         var refreshTokenPlusHour = Long.parseLong(Objects.requireNonNull(env.getProperty("token.refresh-token.plus-hour")));
 
 
@@ -79,7 +79,7 @@ public class JwtTokenHelper implements TokenHelperIfs {
 
     @Override
     public Map<String, Object> validationTokenWithThrow(String token) {
-        var secretKey = Objects.requireNonNull(env.getProperty("token.secret.key"));
+        var secretKey = Objects.requireNonNull(env.getProperty("token.secret.user.key"));
 
         var key = Keys.hmacShaKeyFor(secretKey.getBytes());
 
