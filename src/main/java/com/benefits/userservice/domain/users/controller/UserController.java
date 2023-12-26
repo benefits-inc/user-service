@@ -37,7 +37,7 @@ public class UserController {
         return Api.OK(response.getData());
     }
 
-    @GetMapping(value = "/users", params = "email")
+    @GetMapping(path = "/users", params = "email")
     public Api<UserResponse> getUserByEmail(@RequestParam(value = "email") String email){
         var response = userBusiness.getUserByEmail(email);
         return Api.OK(response.getData());
