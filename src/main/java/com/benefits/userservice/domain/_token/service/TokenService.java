@@ -20,6 +20,7 @@ public class TokenService {
     public TokenDto issueAccessToken(UserEntity userEntity){
         var data = new HashMap<String, Object>();
         data.put("sub", userEntity.getId());
+        data.put("role", userEntity.getRole());
         data.put("email", userEntity.getEmail());
         return tokenHelperIfs.issueAccessToken(data);
     }
@@ -27,6 +28,7 @@ public class TokenService {
     public TokenDto issueRefreshToken(UserEntity userEntity){
         var data = new HashMap<String, Object>();
         data.put("sub", userEntity.getId());
+        data.put("role", userEntity.getRole());
         data.put("email", userEntity.getEmail());
         return tokenHelperIfs.issueRefreshToken(data);
     }
