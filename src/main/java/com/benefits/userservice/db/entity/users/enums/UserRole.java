@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum UserRole {
-    ADMIN("관리자"),
     USER("일반회원")
     ;
 
