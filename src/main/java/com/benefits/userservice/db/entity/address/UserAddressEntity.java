@@ -26,6 +26,9 @@ public class UserAddressEntity {
     @Column(length = 200, nullable = false)
     private String address2;
 
+    @Column(length = 20, nullable = false)
+    private String zipcode;
+
     @Column(length = 45, nullable = false)
     private String phone;
 
