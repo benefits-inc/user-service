@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth-api")
 @RequiredArgsConstructor
-public class UserAddressController {
+public class AddressAuthApiController {
 
     private final UserAddressBusiness userAddressBusiness;
     @PostMapping("/address")

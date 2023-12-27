@@ -9,13 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 
-/*
-GET /profiles?userId={id}
-PUT /profiles/:id*/
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth-api")
 @RequiredArgsConstructor
-public class UserProfileController {
+public class ProfileAuthApiController {
 
     private final UserProfileBusiness userProfileBusiness;
 
