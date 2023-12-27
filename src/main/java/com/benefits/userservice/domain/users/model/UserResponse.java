@@ -20,7 +20,6 @@ import java.util.List;
 public class UserResponse {
 
     private Long id;
-    private String userId;
     private String name;
     private String email;
     private String phone;
