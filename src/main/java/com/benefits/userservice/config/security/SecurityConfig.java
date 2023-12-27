@@ -40,7 +40,7 @@ public class SecurityConfig implements EnvironmentAware {
     public void setEnvironment(final Environment env) {
         this.env = env;
     }
-    private static final String [] WHITE_LIST = {"/actuator/**", "/login", "restore"};
+//    private static final String [] WHITE_LIST = {"/actuator/**"};
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         return
@@ -48,8 +48,7 @@ public class SecurityConfig implements EnvironmentAware {
                 .csrf(AbstractHttpConfigurer::disable)
                     .authorizeHttpRequests(auth -> {
                         auth
-                            .requestMatchers(antMatcher(HttpMethod.POST, "/users")).permitAll()
-                            .requestMatchers(WHITE_LIST).permitAll()
+                            //.requestMatchers(WHITE_LIST).permitAll()
                             .requestMatchers("/**").access((this::hasIpAddress))
                             .anyRequest().authenticated();
                     })
