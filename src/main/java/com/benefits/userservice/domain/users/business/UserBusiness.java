@@ -35,13 +35,13 @@ public class UserBusiness {
     public Api<UserResponse> register(UserRequest request) {
         UserResponse data = null;
 
-            var userEntity = userConverter.toEntity(request);
-            var newUserEntity = userService.register(userEntity);
+        var userEntity = userConverter.toEntity(request);
+        var newUserEntity = userService.register(userEntity);
 
-            var userProfileEntity = userProfileService.userProfileRegister(newUserEntity);
-            var userProfileResponse = userProfileConverter.toResponse(userProfileEntity);
+        var userProfileEntity = userProfileService.userProfileRegister(newUserEntity);
+        var userProfileResponse = userProfileConverter.toResponse(userProfileEntity);
 
-            data = userConverter.toResponse(newUserEntity, userProfileResponse);
+        data = userConverter.toResponse(newUserEntity, userProfileResponse);
 
 
         return Api.<UserResponse>builder()
@@ -66,6 +66,7 @@ public class UserBusiness {
                 .build();
     }
 
+
     public Api<UserResponse> getUserById(Long id){
         var userEntity = userService.getUserByIdWithThrow(id);
 
@@ -73,6 +74,7 @@ public class UserBusiness {
         var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
 
         var data = userConverter.toResponse(userEntity, userProfileResponse, userAddressResponseList);
+
         return Api.<UserResponse>builder()
                 .data(data)
                 .build();
@@ -85,6 +87,7 @@ public class UserBusiness {
         var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
 
         var data = userConverter.toResponse(userEntity, userProfileResponse, userAddressResponseList);
+
         return Api.<UserResponse>builder()
                 .data(data)
                 .build();
@@ -113,5 +116,58 @@ public class UserBusiness {
         var userEntity = userService.getUserByIdWithThrow(id);
         userEntity.setStatus(UserStatus.UNREGISTERED);
         userService.deleteUser(userEntity);
+    }
+
+
+    /**
+     * 유저용 (REGISTERED)
+     * @param id (id로 조회)
+     * @param open (false: 본인용, open: 다른 사람이 나를 조회할 때)
+     * @return
+     */
+    public Api<UserResponse> getUserByIdAndStatusWithThrow(Long id, Boolean open){
+        var userEntity = userService.getUserByIdAndStatusWithThrow(id);
+
+        var userProfileResponse = userProfileConverter.toResponse(userEntity.getUserProfile());
+        var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
+
+        var data = userConverter.toResponse(userEntity, userProfileResponse, userAddressResponseList);
+
+        if(open){
+            data.setStatus(null);
+            data.setPhone(null);
+            data.setEmail(null);
+            data.setUserAddressResponseList(null);
+        }
+
+        return Api.<UserResponse>builder()
+                .data(data)
+                .build();
+    }
+
+    /**
+     * 유저용 (REGISTERED)
+     * @param email (이메일로 조회)
+     * @param open (false: 본인용, open: 다른 사람이 나를 조회할 때)
+     * @return
+     */
+    public Api<UserResponse> getUserByEmailAndStatusWithThrow(String email, Boolean open){
+        var userEntity = userService.getUserByEmailAndStatusWithThrow(email);
+
+        var userProfileResponse = userProfileConverter.toResponse(userEntity.getUserProfile());
+        var userAddressResponseList = userAddressConverter.toResponseList(userEntity.getUserAddressEntityList());
+
+        var data = userConverter.toResponse(userEntity, userProfileResponse, userAddressResponseList);
+
+        if(open){
+            data.setStatus(null);
+            data.setPhone(null);
+            data.setEmail(null);
+            data.setUserAddressResponseList(null);
+        }
+
+        return Api.<UserResponse>builder()
+                .data(data)
+                .build();
     }
 }

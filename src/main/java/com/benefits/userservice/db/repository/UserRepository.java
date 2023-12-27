@@ -13,4 +13,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByEmailAndStatus(String email, UserStatus status);
     Optional<UserEntity> findByIdAndStatus(Long id, UserStatus status);
     Page<UserEntity> findAllByStatus(Pageable pageable, UserStatus status);
+
+    // 관리자용
+    Optional<UserEntity> findByEmail(String email);
 }

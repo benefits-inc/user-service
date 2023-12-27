@@ -37,23 +37,19 @@ public class UserService {
         return userRepository.save(saveUserEntity);
     }
 
-    @Transactional(readOnly = true)
-    public Page<UserEntity> getAllUsers(Pageable pageable){
+    public Page<UserEntity> getAllUsersAndStatus(Pageable pageable){
         return userRepository.findAllByStatus(pageable, UserStatus.REGISTERED);
     }
 
-    @Transactional(readOnly = true)
-    public UserEntity getUserByIdWithThrow(Long id){
+    public UserEntity getUserByIdAndStatusWithThrow(Long id){
         return userRepository.findByIdAndStatus(id, UserStatus.REGISTERED)
                 .orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
     }
 
-    @Transactional(readOnly = true)
-    public UserEntity getUserByEmailWithThrow(String email){
+    public UserEntity getUserByEmailAndStatusWithThrow(String email){
         return userRepository.findByEmailAndStatus(email, UserStatus.REGISTERED)
                 .orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
     }
-
 
     public UserEntity updateUser(UserEntity userEntity){
         var updateUserEntity = Optional.ofNullable(userEntity)
@@ -64,6 +60,24 @@ public class UserService {
     public void deleteUser(UserEntity userEntity){
         userEntity.setUnregisteredAt(LocalDateTime.now());
         userRepository.save(userEntity);
+    }
+
+    /**
+     *  관리자용 조회
+     */
+
+    public Page<UserEntity> getAllUsers(Pageable pageable){
+        return userRepository.findAll(pageable);
+    }
+
+    public UserEntity getUserByIdWithThrow(Long id){
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
+    }
+
+    public UserEntity getUserByEmailWithThrow(String email){
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
     }
 
 }
