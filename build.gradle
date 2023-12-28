@@ -48,11 +48,15 @@ dependencies {
 
 //	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 
-	// https://mvnrepository.com/artifact/io.github.openfeign/feign-micrometer
-//	testImplementation group: 'io.github.openfeign', name: 'feign-micrometer', version: '13.1'
 
-//	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
-//	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+	// zipkin
+	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+	// https://mvnrepository.com/artifact/io.github.openfeign/feign-micrometer
+	// zipkin openfeign trace
+	// testImplementation group: 'io.github.openfeign', name: 'feign-micrometer', version: '13.1'
+
+
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
