@@ -26,6 +26,7 @@ public class AuthenticationController {
        var responseToken = authenticationBusiness.login(request);
        return ResponseEntity.status(HttpStatus.CREATED)
                .header("access_token", responseToken.getAccessToken()) //accessToken은 헤더로 내려줄지 바디로 내려줄지 선택
+               .header(HttpHeaders.AUTHORIZATION, responseToken.getAccessToken()) //accessToken은 헤더로 내려줄지 바디로 내려줄지 선택
                .header(HttpHeaders.SET_COOKIE, responseToken.getResponseCookie().toString())
                .body(responseToken);
    }
