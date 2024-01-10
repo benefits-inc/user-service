@@ -20,11 +20,13 @@ public class AuthenticationService {
 
         ResponseCookie responseCookie = ResponseCookie.from("refreshToken", refreshTokenDto.getToken())
                 .httpOnly(true)
-                //.secure(true)
+                .secure(true)
                 .path("/")
+                .sameSite("None")
+                //.domain("localhost")
                 .maxAge(60 * 60 * refreshTokenDto.getMaxAge())
-                //.domain("mydomain.com")
                 .build();
+
 
         return TokenResponse.builder()
                 .accessToken(accessTokenDto.getToken())
