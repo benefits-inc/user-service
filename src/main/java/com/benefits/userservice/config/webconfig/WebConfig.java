@@ -17,7 +17,8 @@ public class WebConfig implements WebMvcConfigurer, EnvironmentAware {
         registry.addMapping("/**") 			// ex) /somePath/**, /user-service/**
                 .allowedMethods("*")				// ex) .allowedMethods("GET", "POST");
                 .allowCredentials(true) // front withCredential true
-                //.allowedHeaders("x-requested-with, Authorization, access_token, Content-Type")
+                .exposedHeaders("Authorization", "access_token") // front axios res.headers.authorization
+                //.allowedHeaders("x-requested-with", "Authorization", "access_token", "Content-Type")
                 .allowedOrigins(gatewayIp, gatewayLocal, "http://localhost:3001"); // gateway(스웨거), 프론트 허용
                 // .allowedOriginPatterns("*"); 2.4부터 와일드카드는 allowedOriginPatterns 메소드로 사용 가능
     }
