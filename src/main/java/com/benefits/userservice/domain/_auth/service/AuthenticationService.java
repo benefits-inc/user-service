@@ -4,7 +4,9 @@ import com.benefits.userservice.config.security.auth.model.UserSession;
 import com.benefits.userservice.db.entity.users.UserEntity;
 import com.benefits.userservice.domain._auth.model.TokenResponse;
 import com.benefits.userservice.domain._token.service.TokenService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
+    private final Environment env;
     private final TokenService tokenService;
 
     public TokenResponse login(UserEntity userEntity) {
@@ -23,7 +26,7 @@ public class AuthenticationService {
                 .secure(true)
                 .path("/")
                 .sameSite("None")
-                //.domain("localhost")
+                .domain(env.getProperty("cookie.domain"))
                 .maxAge(60 * 60 * refreshTokenDto.getMaxAge())
                 .build();
 
