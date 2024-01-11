@@ -1,8 +1,10 @@
 package com.benefits.userservice.domain.users.model;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,18 +15,22 @@ import lombok.NoArgsConstructor;
 public class UserRequest {
 
     @NotBlank
+    @Schema( type = "string", example = "매운맛 카레", description = "사용하고 싶은 닉네임")
     private String name;
 
     @Email
     @NotBlank
+    @Schema( type = "string", example = "aaa@gmail.com", description = "이메일 형식")
     private String email;
 
     @NotBlank
-    // @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,16}$", message = "비밀번호 생성 규칙이 일치하지 않습니다") // 영문 숫자 특수문자 8~16
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,16}$", message = "비밀번호 생성 규칙이 일치하지 않습니다") // 영문 숫자 특수문자 8~16
+    @Schema( type = "string", example = "Qwe123!!", description = "영문 숫자 특수문자 8~16 자리")
     private String password;
 
     @NotBlank
-    // @Pattern(regexp = "^(?:(010\\d{4})|(070\\d{4})|(01[1|6|7|8|9]\\d{3,4}))(\\d{4})$" , message = "휴대전화 형식이 올바르지 않습니다")
+    @Pattern(regexp = "^(?:(010\\d{4})|(070\\d{4})|(01[1|6|7|8|9]\\d{3,4}))(\\d{4})$" , message = "휴대전화 형식이 올바르지 않습니다")
+    @Schema( type = "string", example = "01022223333", description = "특수문자 '-' 없이 휴대폰 번호 형식")
     private String phone;
 
 }
