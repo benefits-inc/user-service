@@ -4,6 +4,7 @@ import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.domain.users.business.UserBusiness;
 import com.benefits.userservice.domain.users.model.UserRequest;
 import com.benefits.userservice.domain.users.model.UserResponse;
+import com.benefits.userservice.domain.users.model.UserUpdateRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -59,7 +60,7 @@ public class UserController {
     @PutMapping("/users/{id}")
     public Api<UserResponse> updateUser(@Parameter(example = "1")
                                         @PathVariable(name = "id") Long id,
-                                        @RequestBody @Valid UserRequest request){
+                                        @RequestBody @Valid UserUpdateRequest request){
         var response = userBusiness.updateUser(id, request);
         return Api.OK(response.getData());
     }
