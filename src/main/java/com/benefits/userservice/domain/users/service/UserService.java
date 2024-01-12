@@ -53,6 +53,10 @@ public class UserService {
 
     public UserEntity updateUser(UserEntity userEntity){
         var updateUserEntity = Optional.ofNullable(userEntity)
+                .map(ue -> {
+                    ue.setPassword(passwordEncoder.encode(ue.getPassword()));
+                    return  ue;
+                })
                 .orElseThrow(()-> new ApiException(ServerResultCode.NULL_POINT_ERROR, "UserEntity is Null"));
         return userRepository.save(updateUserEntity);
     }
