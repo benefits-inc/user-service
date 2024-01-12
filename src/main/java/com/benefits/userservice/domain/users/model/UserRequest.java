@@ -12,20 +12,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema( description = "사용자 등록, 수정 요청을 위한 REQUEST 도메인 객체")
 public class UserRequest {
 
     @NotBlank
-    @Schema( type = "string", example = "매운맛 카레", description = "사용하고 싶은 닉네임")
+    @Schema( type = "string", example = "홍길동", description = "사용자 이름")
     private String name;
 
     @Email
     @NotBlank
-    @Schema( type = "string", example = "aaa@gmail.com", description = "이메일 형식")
+    @Schema( type = "string", example = "your_email@gmail.com", description = "이메일 형식")
     private String email;
 
     @NotBlank
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,16}$", message = "비밀번호 생성 규칙이 일치하지 않습니다") // 영문 숫자 특수문자 8~16
-    @Schema( type = "string", example = "Qwe123!!", description = "영문 숫자 특수문자 8~16 자리")
+    @Schema( type = "string", example = "your_password", description = "영문 숫자 특수문자 8~16 자리")
     private String password;
 
     @NotBlank
