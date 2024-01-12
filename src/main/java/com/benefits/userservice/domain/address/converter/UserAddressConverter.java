@@ -20,7 +20,7 @@ public class UserAddressConverter {
                 .address2(userAddressRequest.getAddress2())
                 .zipcode(userAddressRequest.getZipcode())
                 .phone(userAddressRequest.getPhone())
-                .receiveType(UserReceiveType.valueOf(userAddressRequest.getReceiveType()))
+                .receiveType(userAddressRequest.getReceiveType())
                 .receiveMessage(userAddressRequest.getReceiveMessage())
                 .user(userEntity)
                 .build();

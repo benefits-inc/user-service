@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/auth-api")
 @RequiredArgsConstructor
-@Tag(name = "Address", description = "사용자 주소 AUTH API 입니다. 유저의 권한(accessToken)이 필요합니다.")
+@Tag(name = "Address", description = "사용자 주소 AUTH API 입니다. 사용자 자신의 권한(accessToken)이 필요합니다.")
 public class AddressAuthApiController {
 
     private final UserAddressBusiness userAddressBusiness;
@@ -39,7 +39,7 @@ public class AddressAuthApiController {
             "<br><br> 개인 사용자 정보이므로 자신만 조회할 수 있습니다.")
     @UserSelfRole
     @GetMapping(path = "/address", params = "user_id")
-    public Api<List<UserAddressResponse>> getAllUserAddressByUserId(@RequestParam(value = "user_id") Long userId){
+    public Api<List<UserAddressResponse>> getAllUserAddressByUserId(@Parameter(example = "1") @RequestParam(value = "user_id") Long userId){
         var response = userAddressBusiness.getAllUserAddressByUserId(userId);
         return Api.OK(response.getData());
     }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth-api")
 @RequiredArgsConstructor
-@Tag(name = "Profiles", description = "사용자 프로필 AUTH API 입니다. 유저의 권한(accessToken)이 필요합니다.")
+@Tag(name = "Profiles", description = "사용자 프로필 AUTH API 입니다. 사용자 자신의 권한(accessToken)이 필요합니다.")
 public class ProfileAuthApiController {
 
     private final UserProfileBusiness userProfileBusiness;

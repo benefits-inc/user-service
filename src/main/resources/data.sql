@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS `users`.`profiles` (
   `profile_image_url` VARCHAR(200) NULL,
   `nick_name` VARCHAR(45) NULL,
   `grade` ENUM('BRONZE', 'SILVER', 'GOLD') NOT NULL DEFAULT 'BRONZE' COMMENT 'BRONZE, SILVER, GOLD',
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `INDEX_USER_ID` (`user_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 

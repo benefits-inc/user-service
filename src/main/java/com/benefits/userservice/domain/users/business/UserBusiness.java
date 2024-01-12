@@ -13,6 +13,7 @@ import com.benefits.userservice.domain.users.model.UserRequest;
 import com.benefits.userservice.domain.users.model.UserResponse;
 import com.benefits.userservice.domain.address.service.UserAddressService;
 import com.benefits.userservice.domain.profiles.service.UserProfileService;
+import com.benefits.userservice.domain.users.model.UserUpdateRequest;
 import com.benefits.userservice.domain.users.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -38,7 +39,7 @@ public class UserBusiness {
     public Api<UserResponse> register(UserRequest request) {
         UserResponse data = null;
 
-        var existUserEntity = userService.getUserByEmailWithThrow(request.getEmail());
+        var existUserEntity = userService.getUserByEmail(request.getEmail());
         if(Optional.ofNullable(existUserEntity).isPresent()){
             throw new ApiException(UserResultCode.BAD_REQUEST, "이미 등록한 회원입니다.");
         }
@@ -101,10 +102,11 @@ public class UserBusiness {
                 .build();
     }
 
-    public Api<UserResponse> updateUser(Long id, UserRequest request){
+    @Transactional
+    public Api<UserResponse> updateUser(Long id, UserUpdateRequest request){
 
         var userEntity = userService.getUserByIdWithThrow(id);
-        userEntity.setEmail(request.getEmail());
+        //userEntity.setEmail(request.getEmail());
         userEntity.setName(request.getName());
         userEntity.setPassword(request.getPassword());
         userEntity.setPhone(request.getPhone());
@@ -120,6 +122,7 @@ public class UserBusiness {
                 .build();
     }
 
+    @Transactional
     public void deleteUser(Long id){
         var userEntity = userService.getUserByIdWithThrow(id);
         userEntity.setStatus(UserStatus.UNREGISTERED);

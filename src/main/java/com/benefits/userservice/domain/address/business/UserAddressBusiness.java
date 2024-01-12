@@ -11,6 +11,7 @@ import com.benefits.userservice.domain.address.converter.UserAddressConverter;
 import com.benefits.userservice.domain.address.service.UserAddressService;
 import com.benefits.userservice.domain.users.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,6 +48,9 @@ public class UserAddressBusiness {
                 .build();
     }
 
+
+    // 업데이트를 다시 호출 없이  하나의 엔티티 트랜잭션안에서 수행하는 예시
+    @Transactional
     public Api<UserAddressResponse> updateAddress(Long id, Long userId, UserAddressRequest request) {
 
         var userAddressEntity = userAddressService.getUserAddressByIdAndUserId(id, userId);
@@ -55,7 +59,7 @@ public class UserAddressBusiness {
         userAddressEntity.setAddress2(request.getAddress2());
         userAddressEntity.setUser(userAddressEntity.getUser());
         userAddressEntity.setPhone(request.getPhone());
-        userAddressEntity.setReceiveType(UserReceiveType.valueOf(request.getReceiveType()));
+        userAddressEntity.setReceiveType(request.getReceiveType());
         userAddressEntity.setReceiveMessage(request.getReceiveMessage());
 
         var updateUserAddressEntity = userAddressService.userAddressRegister(userAddressEntity);
@@ -65,6 +69,7 @@ public class UserAddressBusiness {
                 .build();
     }
 
+    @Transactional
     public void deleteAddress(Long id, Long userId) {
         var userAddressEntity = userAddressService.getUserAddressByIdAndUserId(id, userId);
         userAddressService.deleteAddress(userAddressEntity.getId(), userAddressEntity.getUser().getId());

@@ -5,6 +5,7 @@ import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.domain.users.business.UserBusiness;
 import com.benefits.userservice.domain.users.model.UserRequest;
 import com.benefits.userservice.domain.users.model.UserResponse;
+import com.benefits.userservice.domain.users.model.UserUpdateRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth-api")
 @RequiredArgsConstructor
 
-@Tag(name = "Users", description = "사용자 정보 AUTH API 입니다. 유저의 권한(accessToken)이 필요합니다.")
+@Tag(name = "Users", description = "사용자 정보 AUTH API 입니다. 사용자 자신의 권한(accessToken)이 필요합니다.")
 public class UserAuthApiController {
     private final UserBusiness userBusiness;
 
@@ -44,7 +45,7 @@ public class UserAuthApiController {
     @UserSelfRole
     @PutMapping("/users/{id}")
     public Api<UserResponse> updateUser(@Parameter(example = "1") @PathVariable(name = "id") Long id,
-                                        @RequestBody @Valid UserRequest request){
+                                        @RequestBody @Valid UserUpdateRequest request){
         var response = userBusiness.updateUser(id, request);
         return Api.OK(response.getData());
     }
