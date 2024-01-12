@@ -26,17 +26,17 @@ public class UserProfileService {
 
     public UserProfileEntity getProfileByUserIdWithThrow(Long userId){
         return userProfileRepository.findByUserId(userId)
-                .orElseThrow(()-> new ApiException(UserResultCode.NOT_FOUND, "사용자 프로필이 존재하지 않습니다"));
+                .orElseThrow(()-> new ApiException(UserResultCode.NOT_FOUND_PROFILE, "사용자 프로필이 존재하지 않습니다"));
     }
 
     public UserProfileEntity getProfileByIdAndUserIdWithThrow(Long id, Long userId){
         return userProfileRepository.findByIdAndUserId(id, userId)
-                .orElseThrow(()-> new ApiException(UserResultCode.NOT_FOUND, "사용자 프로필이 존재하지 않습니다"));
+                .orElseThrow(()-> new ApiException(UserResultCode.NOT_FOUND_PROFILE, "사용자 프로필이 존재하지 않습니다"));
     }
 
     public UserProfileEntity updateProfile(UserProfileEntity userProfileEntity){
         var updateUserProfileEntity = Optional.ofNullable(userProfileEntity)
-                .orElseThrow(()-> new ApiException(UserResultCode.NOT_FOUND, "사용자 프로필이 존재하지 않습니다"));
+                .orElseThrow(()-> new ApiException(UserResultCode.NOT_FOUND_PROFILE, "사용자 프로필이 존재하지 않습니다"));
         return userProfileRepository.save(updateUserProfileEntity);
     }
 
