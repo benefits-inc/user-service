@@ -1,6 +1,8 @@
 package com.benefits.userservice.domain.users.business;
 
 import com.benefits.userservice.common.annotation.Business;
+import com.benefits.userservice.common.exception.ApiException;
+import com.benefits.userservice.common.resultcode.UserResultCode;
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.common.spec.Pagination;
 import com.benefits.userservice.db.entity.users.enums.UserStatus;
@@ -17,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Business
@@ -34,6 +37,11 @@ public class UserBusiness {
     @Transactional
     public Api<UserResponse> register(UserRequest request) {
         UserResponse data = null;
+
+        var existUserEntity = userService.getUserByEmailWithThrow(request.getEmail());
+        if(Optional.ofNullable(existUserEntity).isPresent()){
+            throw new ApiException(UserResultCode.BAD_REQUEST, "이미 등록한 회원입니다.");
+        }
 
         var userEntity = userConverter.toEntity(request);
         var newUserEntity = userService.register(userEntity);

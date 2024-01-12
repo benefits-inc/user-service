@@ -10,5 +10,6 @@ public interface UserAddressRepository extends JpaRepository<UserAddressEntity, 
     List<UserAddressEntity> findAllByUserId(Long userId);
     Optional<UserAddressEntity> findAllByIdAndUserId(Long id, Long userId);
 
+    void deleteByIdAndUserId(Long id, Long userId);
 
 }

@@ -32,7 +32,7 @@ public class UserAddressService {
                 .orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND, "주소를 찾을 수 없습니다."));
     }
 
-    public void deleteAddress(Long id) {
-        userAddressRepository.deleteById(id);
+    public void deleteAddress(Long id, Long userId) {
+        userAddressRepository.deleteByIdAndUserId(id, userId);
     }
 }

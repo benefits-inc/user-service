@@ -20,9 +20,7 @@ public class UserAddressBusiness {
     private final UserService userService;
     private final UserAddressService userAddressService;
     private final UserAddressConverter userAddressConverter;
-    public Api<UserAddressResponse> register(UserAddressRequest request) {
-
-        var userId = Long.parseLong(request.getUserId());
+    public Api<UserAddressResponse> register(Long userId, UserAddressRequest request) {
 
         // 최대 3개
         var address_cnt = userAddressService.getAllUserAddressByUserId(userId).size();
@@ -37,8 +35,8 @@ public class UserAddressBusiness {
         var data = userAddressConverter.toResponse(newUserAddressEntity);
 
         return Api.<UserAddressResponse>builder()
-                    .data(data)
-                    .build();
+                .data(data)
+                .build();
     }
 
     public Api<List<UserAddressResponse>> getAllUserAddressByUserId(Long userId) {
@@ -49,10 +47,7 @@ public class UserAddressBusiness {
                 .build();
     }
 
-    public Api<UserAddressResponse> updateAddress(Long id, UserAddressRequest request) {
-
-        var userId = Long.parseLong(request.getUserId());
-
+    public Api<UserAddressResponse> updateAddress(Long id, Long userId, UserAddressRequest request) {
 
         var userAddressEntity = userAddressService.getUserAddressByIdAndUserId(id, userId);
         userAddressEntity.setReceiver(request.getReceiver());
@@ -70,7 +65,8 @@ public class UserAddressBusiness {
                 .build();
     }
 
-    public void deleteAddress(Long id) {
-        userAddressService.deleteAddress(id);
+    public void deleteAddress(Long id, Long userId) {
+        var userAddressEntity = userAddressService.getUserAddressByIdAndUserId(id, userId);
+        userAddressService.deleteAddress(userAddressEntity.getId(), userAddressEntity.getUser().getId());
     }
 }
