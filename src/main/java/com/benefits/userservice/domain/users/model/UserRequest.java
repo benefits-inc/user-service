@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema( description = "사용자 등록, 수정 요청을 위한 REQUEST 도메인 객체")
+@Schema( description = "사용자 등록 요청을 위한 REQUEST 도메인 객체")
 public class UserRequest {
 
     @NotBlank
