@@ -79,5 +79,7 @@ public class UserService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new ApiException(UserResultCode.NOT_FOUND));
     }
-
+    public UserEntity getUserByEmail(String email){
+        return userRepository.findByEmail(email).orElse(null);
+    }
 }

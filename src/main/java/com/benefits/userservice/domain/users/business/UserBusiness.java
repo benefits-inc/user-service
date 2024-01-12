@@ -38,7 +38,7 @@ public class UserBusiness {
     public Api<UserResponse> register(UserRequest request) {
         UserResponse data = null;
 
-        var existUserEntity = userService.getUserByEmailWithThrow(request.getEmail());
+        var existUserEntity = userService.getUserByEmail(request.getEmail());
         if(Optional.ofNullable(existUserEntity).isPresent()){
             throw new ApiException(UserResultCode.BAD_REQUEST, "이미 등록한 회원입니다.");
         }
