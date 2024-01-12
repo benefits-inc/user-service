@@ -55,7 +55,7 @@ public class UserAddressBusiness {
         userAddressEntity.setAddress2(request.getAddress2());
         userAddressEntity.setUser(userAddressEntity.getUser());
         userAddressEntity.setPhone(request.getPhone());
-        userAddressEntity.setReceiveType(UserReceiveType.valueOf(request.getReceiveType()));
+        userAddressEntity.setReceiveType(request.getReceiveType());
         userAddressEntity.setReceiveMessage(request.getReceiveMessage());
 
         var updateUserAddressEntity = userAddressService.userAddressRegister(userAddressEntity);
