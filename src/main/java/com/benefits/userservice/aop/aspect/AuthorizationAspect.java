@@ -45,24 +45,30 @@ public class AuthorizationAspect {
             ObjectMapper objectMapper = new ObjectMapper();
             payload = objectMapper.readValue(decodedPayloadByte, Payload.class);
 
-            if(request.getRequestURI().startsWith("/auth-api") && payload.getRole().equals("USER")){
-                if(request.getParameter("email") != null){
-                    var email = request.getParameter("email");
-                    if (!email.equals(payload.getEmail())){
-                        throw new ApiException(UserResultCode.NOT_ACCEPTABLE);
-                    }
-                } else if (request.getParameter("user_id") != null) {
-                    var email = request.getParameter("user_id");
-                    if (!email.equals(payload.getSub())){
-                        throw new ApiException(UserResultCode.NOT_ACCEPTABLE);
-                    }
-                } else{
-                    var id = request.getRequestURI().split("\\/")[request.getRequestURI().split("\\/").length - 1];
-                    if (!id.equals(payload.getSub())){
-                        throw new ApiException(UserResultCode.NOT_ACCEPTABLE);
-                    }
+            if(!payload.getRole().equals("USER")){
+                throw new ApiException(UserResultCode.NOT_ACCEPTABLE);
+            }
+
+            if(request.getParameter("email") != null){
+                var email = request.getParameter("email");
+                if (!email.equals(payload.getEmail())){
+                    throw new ApiException(UserResultCode.NOT_ACCEPTABLE);
+                }
+            } else if (request.getParameter("user_id") != null) {
+                var email = request.getParameter("user_id");
+                if (!email.equals(payload.getSub())){
+                    throw new ApiException(UserResultCode.NOT_ACCEPTABLE);
+                }
+            } else{
+                var id = request.getRequestURI().split("\\/")[request.getRequestURI().split("\\/").length - 1];
+                if (!id.equals(payload.getSub())){
+                    throw new ApiException(UserResultCode.NOT_ACCEPTABLE);
                 }
             }
+
+            /*if(request.getRequestURI().startsWith("/auth-api") && payload.getRole().equals("USER")){
+
+            }*/
         } catch (IOException e) {
             throw new ApiException(TokenResultCode.INVALID_TOKEN);
         }
