@@ -66,6 +66,17 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
+    public void updateLastLoginAt(UserEntity userEntity){
+        var updateUserEntity = Optional.ofNullable(userEntity)
+                .map(ue -> {
+                    ue.setLastLoginAt(LocalDateTime.now());
+                    return  ue;
+                })
+                .orElseThrow(()-> new ApiException(ServerResultCode.NULL_POINT_ERROR, "UserEntity is Null"));
+        userRepository.save(updateUserEntity);
+    }
+
+
     /**
      *  관리자용 조회
      */

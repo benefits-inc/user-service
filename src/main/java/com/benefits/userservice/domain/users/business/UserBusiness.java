@@ -130,6 +130,12 @@ public class UserBusiness {
     }
 
 
+    @Transactional
+    public void updateLastLoginAt(Long id){
+        var userEntity = userService.getUserByIdWithThrow(id);
+        userService.updateLastLoginAt(userEntity);
+    }
+
     /**
      * 유저용 (REGISTERED)
      * @param id (id로 조회)
