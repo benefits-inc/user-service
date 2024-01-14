@@ -3,7 +3,6 @@ package com.benefits.userservice.domain.users.controller;
 import com.benefits.userservice.aop.annotation.UserSelfRole;
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.domain.users.business.UserBusiness;
-import com.benefits.userservice.domain.users.model.UserRequest;
 import com.benefits.userservice.domain.users.model.UserResponse;
 import com.benefits.userservice.domain.users.model.UserUpdateRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/auth-api")
+@RequestMapping("/auth-user")
 @RequiredArgsConstructor
 
 @Tag(name = "Users", description = "사용자 정보 AUTH API 입니다. 사용자 자신의 권한(accessToken)이 필요합니다.")
-public class UserAuthApiController {
+public class UserAuthUserController {
     private final UserBusiness userBusiness;
 
     @Operation(summary = "사용자 조회 - user_id", description = "등록된 user_id로 개인 사용자 회원 정보를 조회합니다. " +
