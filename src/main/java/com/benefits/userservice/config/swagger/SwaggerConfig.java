@@ -42,27 +42,27 @@ public class SwaggerConfig implements EnvironmentAware {
         String[] path = {"/open-api/**", "/login", "/restore"};
 
         return GroupedOpenApi.builder()
-                .group("1. Users Open Api")
+                .group("1. Open Api")
                 .pathsToMatch(path)
                 .build();
     }
 
     @Bean
     GroupedOpenApi usersAuthApi(){
-        String[] path = {"/auth-api/**"};
+        String[] path = {"/auth-user/**"};
 
         return GroupedOpenApi.builder()
-                .group("2. Users Auth Api")
+                .group("2. Auth Api (User)")
                 .pathsToMatch(path)
                 .build();
     }
 
     @Bean
     GroupedOpenApi usersSuperApi(){
-        String[] path = {"/users/**", "/profiles/**", "/address/**"};
+        String[] path = {"/auth-super/**"};
 
         return GroupedOpenApi.builder()
-                .group("3. Users Supervisor Api")
+                .group("3. Auth Api (Supervisor)")
                 .pathsToMatch(path)
                 .build();
     }
@@ -91,7 +91,7 @@ public class SwaggerConfig implements EnvironmentAware {
                 .description(
                     "사용자 회원가입, 로그인 및 프로필, 주소 등록하는 기능을 제공하는 API 입니다. <br><br>"
                     + "모든 요청은 Gateway를 거치며 CORS 정책에 요청 허용된 도메인은 Gateway 도메인 또는 특정 FrontEnd 도메인 입니다. <br><br>"
-                    + "공개(open) API, 유저(auth) 권한 API, 관리자(Supervisor) 권한 API로 구성 됩니다.<br><br>"
+                    + "공개(open) API, 유저(User) 권한 API, 관리자(Supervisor) 권한 API로 구성 됩니다.<br><br>"
                     + "관리자 권한 서비스(SUPERVISOR-SERVICE): <a href='" + gatewayDomain + "/supervisor-service/swagger-ui/index.html'>관리자 서비스</a>")
                 .version("1.0.0"));
     }
