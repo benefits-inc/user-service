@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth-super")
 @RequiredArgsConstructor
 @Tag(name = "Address", description = "관리자용 사용자 주소 API 입니다. 요청 시 관리자용(supervisor) 권한(accessToken)이 필요합니다.")
-public class AddressController {
+public class AddressAuthSuperController {
 
     private final UserAddressBusiness userAddressBusiness;
 

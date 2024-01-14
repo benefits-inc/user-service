@@ -1,5 +1,6 @@
 package com.benefits.userservice.domain.profiles.controller;
 
+import com.benefits.userservice.aop.annotation.UserSelfRole;
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.domain.profiles.business.UserProfileBusiness;
 import com.benefits.userservice.domain.profiles.model.UserProfileRequest;
@@ -12,25 +13,26 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 
-/*
-GET /profiles?userId={id}
-PUT /profiles/:id*/
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth-user")
 @RequiredArgsConstructor
-@Tag(name = "Profiles", description = "관리자용 사용자 프로필 API 입니다. 요청 시 관리자의(supervisor) 권한(accessToken)이 필요합니다.")
-public class ProfileController {
+@Tag(name = "Profiles", description = "사용자 프로필 AUTH API 입니다. 사용자 자신의 권한(accessToken)이 필요합니다.")
+public class ProfileAuthUserController {
 
     private final UserProfileBusiness userProfileBusiness;
 
-    @Operation(summary = "관리자의 권한으로 사용자 프로필 조회", description = "등록된 userId로 개인 사용자 프로필 정보를 조회합니다.")
+    @Operation(summary = "사용자 프로필 조회", description = "등록된 userId로 개인 사용자 프로필 정보를 조회합니다. " +
+            "<br><br> 개인 사용자 정보이므로 자신만 조회할 수 있습니다.")
+    @UserSelfRole
     @GetMapping(path = "/profiles", params = "user_id")
     public Api<UserProfileResponse> getProfileByUserId(@Parameter(example = "1") @RequestParam(value = "user_id") Long userId){
         var response = userProfileBusiness.getProfileByUserId(userId);
         return Api.OK(response.getData());
     }
 
-    @Operation(summary = "관리자의 권한으로 사용자 프로필 수정", description = "등록된 userId로 개인 사용자 프로필 정보를 수정합니다.")
+    @Operation(summary = "사용자 프로필 수정", description = "등록된 profileId로 개인 사용자 프로필 수정합니다. " +
+            "<br><br> 개인 사용자 정보이므로 자신만 수정할 수 있습니다.")
+    @UserSelfRole
     @PutMapping(path = "/profiles", params = "user_id")
     public Api<UserProfileResponse> updateProfile(@Parameter(example = "1") @RequestParam(value = "user_id") Long userId,
                                         @RequestBody @Valid UserProfileRequest request){

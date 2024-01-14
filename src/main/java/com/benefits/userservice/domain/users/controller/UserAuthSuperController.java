@@ -2,7 +2,6 @@ package com.benefits.userservice.domain.users.controller;
 
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.domain.users.business.UserBusiness;
-import com.benefits.userservice.domain.users.model.UserRequest;
 import com.benefits.userservice.domain.users.model.UserResponse;
 import com.benefits.userservice.domain.users.model.UserUpdateRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,11 +18,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth-super")
 @RequiredArgsConstructor
 
 @Tag(name = "Users", description = "관리자용 사용자 API 입니다. 요청 시 관리자의(supervisor) 권한(accessToken)이 필요합니다.")
-public class UserController {
+public class UserAuthSuperController {
     private final UserBusiness userBusiness;
 
     /*@Operation(summary = "관리자의 권한으로 사용자 등록")
