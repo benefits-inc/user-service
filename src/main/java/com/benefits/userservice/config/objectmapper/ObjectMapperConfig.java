@@ -1,6 +1,7 @@
 package com.benefits.userservice.config.objectmapper;
 
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
@@ -22,8 +23,8 @@ public class ObjectMapperConfig {
         // 날짜 관련 직렬화 disable
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        // 스네이크 케이스 디폴트 (busrfresh messageconverter 관련.. 사용 할거면 직접 응답 객체에 SnakeCaseStrategy 적용하기로..)
-        // 환경마다 응답 케이스를 다르게 가져가면 프론트에서 맵핑하기 까다로움 - 하나로 통일 SnakeCase 쓰던가 아니면 안쓰던가
+        // 스네이크 케이스 디폴트 (busrfresh - 직접 응답 객체에 SnakeCaseStrategy 적용으로 변경)
+        // @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
         // objectMapper.setPropertyNamingStrategy(new PropertyNamingStrategies.SnakeCaseStrategy());
         return objectMapper;
     }
