@@ -42,7 +42,7 @@ public class SwaggerConfig implements EnvironmentAware {
         String[] path = {"/open-api/**", "/login", "/restore"};
 
         return GroupedOpenApi.builder()
-                .group("1. Open Api")
+                .group("1. USER-SERVICE - OPEN API")
                 .pathsToMatch(path)
                 .build();
     }
@@ -52,7 +52,7 @@ public class SwaggerConfig implements EnvironmentAware {
         String[] path = {"/auth-user/**"};
 
         return GroupedOpenApi.builder()
-                .group("2. Auth Api (User)")
+                .group("2. USER-SERVICE - AUTH API (SELLER)")
                 .pathsToMatch(path)
                 .build();
     }
@@ -62,7 +62,7 @@ public class SwaggerConfig implements EnvironmentAware {
         String[] path = {"/auth-super/**"};
 
         return GroupedOpenApi.builder()
-                .group("3. Auth Api (Supervisor)")
+                .group("3. USER-SERVICE - AUTH API (SUPERVISOR)")
                 .pathsToMatch(path)
                 .build();
     }
