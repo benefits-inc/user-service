@@ -91,7 +91,7 @@ public class SwaggerConfig implements EnvironmentAware {
                 .description(
                     "사용자 회원가입, 로그인 및 프로필, 주소 등록하는 기능을 제공하는 API 입니다. <br><br>"
                     + "모든 요청은 Gateway를 거치며 CORS 정책에 요청 허용된 도메인은 Gateway 도메인 또는 특정 FrontEnd 도메인 입니다. <br><br>"
-                    + "공개(open) API, 유저 권한(auth) API, 관리자 권한(Supervisor) API로 구성 됩니다.<br><br>"
+                    + "공개(open) API, 유저(auth) 권한 API, 관리자(Supervisor) 권한 API로 구성 됩니다.<br><br>"
                     + "관리자 권한 서비스(SUPERVISOR-SERVICE): <a href='" + gatewayDomain + "/supervisor-service/swagger-ui/index.html'>관리자 서비스</a>")
                 .version("1.0.0"));
     }
