@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 GET /profiles?userId={id}
 PUT /profiles/:id*/
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth-super")
 @RequiredArgsConstructor
 @Tag(name = "Profiles", description = "관리자용 사용자 프로필 API 입니다. 요청 시 관리자의(supervisor) 권한(accessToken)이 필요합니다.")
-public class ProfileController {
+public class ProfileAuthSuperController {
 
     private final UserProfileBusiness userProfileBusiness;
 
