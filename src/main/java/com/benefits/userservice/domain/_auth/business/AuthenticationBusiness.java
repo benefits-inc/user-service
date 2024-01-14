@@ -4,18 +4,16 @@ import com.benefits.userservice.common.annotation.Business;
 import com.benefits.userservice.common.exception.ApiException;
 import com.benefits.userservice.common.resultcode.TokenResultCode;
 import com.benefits.userservice.common.resultcode.UserResultCode;
-import com.benefits.userservice.config.security.auth.model.UserSession;
 import com.benefits.userservice.domain._auth.model.LoginRequest;
 import com.benefits.userservice.domain._auth.model.TokenResponse;
 import com.benefits.userservice.domain._auth.service.AuthenticationService;
 import com.benefits.userservice.domain.users.service.UserService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import com.benefits.userservice.messagequeue.producer.KafkaProducer;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
@@ -23,11 +21,12 @@ import java.util.Arrays;
 @Business
 @RequiredArgsConstructor
 public class AuthenticationBusiness {
+
     private final AuthenticationManager authenticationManager;
-    
     private final AuthenticationService authenticationService;
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+    private final KafkaProducer kafkaProducer;
     
     public TokenResponse login(LoginRequest request){
         var userEntity = userService.getUserByEmailWithThrow(request.getEmail());
@@ -45,7 +44,10 @@ public class AuthenticationBusiness {
         // 한번 더 security 에게 인증 확인 및 UserSession(UserDetails) 생성
         Authentication authenticationResponse = authenticationManager.authenticate(authenticationRequest);
         // UserSession userSession = (UserSession) authenticationResponse.getPrincipal();
-        return authenticationService.login(userEntity);
+
+        var response = authenticationService.login(userEntity);
+        kafkaProducer.sendLastLogin("lastLogin", userEntity.getId());
+        return response;
     }
 
     public TokenResponse restore(HttpServletRequest request){
