@@ -2,6 +2,8 @@ package com.benefits.userservice.common.spec;
 
 import com.benefits.userservice.common.resultcode.ResultCodeIfs;
 import com.benefits.userservice.common.resultcode.UserResultCode;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Result {
     private Integer resultCode;
     private String resultMessage;

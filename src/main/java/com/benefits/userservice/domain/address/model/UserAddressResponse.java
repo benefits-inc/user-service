@@ -1,6 +1,8 @@
 package com.benefits.userservice.domain.address.model;
 
 import com.benefits.userservice.db.entity.address.enums.UserReceiveType;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Schema( description = "사용자 주소 응답을 위한 RESPONSE 도메인 객체 - open-api 요청 시 전체 null 리턴")
 public class UserAddressResponse {
 

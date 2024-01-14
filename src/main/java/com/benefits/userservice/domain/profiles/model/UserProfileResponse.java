@@ -1,6 +1,8 @@
 package com.benefits.userservice.domain.profiles.model;
 
 import com.benefits.userservice.db.entity.profile.enums.UserProfileGrade;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Schema( description = "사용자 프로필 응답을 위한 RESPONSE 도메인 객체")
 public class UserProfileResponse {
 

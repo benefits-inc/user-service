@@ -1,5 +1,7 @@
 package com.benefits.userservice.domain.profiles.model;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Schema( description = "사용자 등록 시 최초 프로필 등록, 수정 요청을 위한 REQUEST 도메인 객체")
 public class UserProfileRequest {
 
