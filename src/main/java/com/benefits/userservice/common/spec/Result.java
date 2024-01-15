@@ -4,6 +4,7 @@ import com.benefits.userservice.common.resultcode.ResultCodeIfs;
 import com.benefits.userservice.common.resultcode.UserResultCode;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,9 +16,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@Schema( description = "공통 응답을 위한 Result 객체")
 public class Result {
+    @Schema( type = "integer", example = "200")
     private Integer resultCode;
+
+    @Schema( type = "string", example = "성공")
     private String resultMessage;
+
+    @Schema( type = "string", example = "성공")
     private String resultDescription;
 
     public static Result OK(){
