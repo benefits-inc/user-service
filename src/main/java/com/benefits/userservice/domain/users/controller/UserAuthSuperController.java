@@ -32,7 +32,7 @@ public class UserAuthSuperController {
         return Api.CREATE(response.getData());
     }*/
 
-    @Operation(summary = "관리자의 권한으로 전체 사용자 조회", description = "회원 상태가 탈퇴 처리, 탈퇴 진행, 탈퇴 처리 된 회원까지 전부 조회합니다.")
+    @Operation(summary = "관리자의 권한으로 전체 사용자 조회", description = "회원 상태가 탈퇴 신청, 탈퇴 진행, 탈퇴 처리 된 회원까지 전부 조회합니다.")
     @GetMapping("/users")
     public Api<List<UserResponse>> getAllUsers(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC)
                                                @ParameterObject Pageable pageable){
