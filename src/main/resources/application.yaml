@@ -6,7 +6,7 @@ spring:
     name: user-service
 
   profiles:
-    include: eureka, config, actuator, rabbitmq, zipkin, swagger
+    include: eureka, config, actuator, rabbitmq, zipkin, swagger, database
 
 
 #logging:
