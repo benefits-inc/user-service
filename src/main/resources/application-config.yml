@@ -1,7 +1,8 @@
 # Config Server
 spring:
   config:
-    import: optional:configserver:http://localhost:8888 # bootstrap 사용 안하고 설정
+    #import: optional:configserver:http://localhost:8888 # bootstrap 사용 안하고 설정
+    import: optional:configserver:http://192.168.0.11:8888 # bootstrap 사용 안하고 설정
   cloud:
     config: # 기본 gateway-service.yaml 사용
       name: user-service
