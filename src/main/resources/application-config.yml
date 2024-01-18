@@ -6,5 +6,6 @@ spring:
   cloud:
     config: # 기본 gateway-service.yaml 사용
       name: user-service
+      profile: prod
       # name: common
       # profile: dev # gateway-service-dev.yaml 사용
