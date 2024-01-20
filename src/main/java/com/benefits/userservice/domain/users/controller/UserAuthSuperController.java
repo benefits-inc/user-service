@@ -55,6 +55,7 @@ public class UserAuthSuperController {
         return Api.OK(response.getData());
     }*/
 
+    /*
     @Operation(summary = "관리자의 권한으로 특정 사용자 수정", description = "회원 상태가 탈퇴 처리, 탈퇴 진행, 탈퇴 처리 된 회원까지 수정")
     @PutMapping("/users/{id}")
     public Api<UserResponse> updateUser(@Parameter(example = "1")
@@ -70,4 +71,5 @@ public class UserAuthSuperController {
         userBusiness.deleteUser(id);
         return Api.OK(null);
     }
+    */
 }

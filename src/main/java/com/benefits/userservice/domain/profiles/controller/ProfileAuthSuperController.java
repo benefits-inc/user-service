@@ -30,11 +30,11 @@ public class ProfileAuthSuperController {
         return Api.OK(response.getData());
     }
 
-    @Operation(summary = "관리자의 권한으로 사용자 프로필 수정", description = "등록된 userId로 개인 사용자 프로필 정보를 수정합니다.")
+    /*@Operation(summary = "관리자의 권한으로 사용자 프로필 수정", description = "등록된 userId로 개인 사용자 프로필 정보를 수정합니다.")
     @PutMapping(path = "/profiles", params = "user_id")
     public Api<UserProfileResponse> updateProfile(@Parameter(example = "1") @RequestParam(value = "user_id") Long userId,
                                         @RequestBody @Valid UserProfileRequest request){
         var response = userProfileBusiness.updateProfile(userId, request);
         return Api.OK(response.getData());
-    }
+    }*/
 }

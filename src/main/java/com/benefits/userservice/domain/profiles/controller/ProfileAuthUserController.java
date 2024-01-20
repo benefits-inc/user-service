@@ -30,7 +30,7 @@ public class ProfileAuthUserController {
         return Api.OK(response.getData());
     }
 
-    @Operation(summary = "사용자 프로필 수정", description = "등록된 profileId로 개인 사용자 프로필 수정합니다. " +
+    /*@Operation(summary = "사용자 프로필 수정", description = "등록된 profileId로 개인 사용자 프로필 수정합니다. " +
             "<br><br> 개인 사용자 정보이므로 자신만 수정할 수 있습니다.")
     @UserSelfRole
     @PutMapping(path = "/profiles", params = "user_id")
@@ -38,5 +38,5 @@ public class ProfileAuthUserController {
                                         @RequestBody @Valid UserProfileRequest request){
         var response = userProfileBusiness.updateProfile(userId, request);
         return Api.OK(response.getData());
-    }
+    }*/
 }

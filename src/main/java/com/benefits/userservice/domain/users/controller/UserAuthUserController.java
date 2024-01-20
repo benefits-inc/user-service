@@ -38,6 +38,7 @@ public class UserAuthUserController {
         var response = userBusiness.getUserByEmailAndStatusWithThrow(email, false);
         return Api.OK(response.getData());
     }
+/*
 
     @Operation(summary = "사용자 수정", description = "개인 사용자 회원 정보를 수정합니다." +
                                    "<br><br> 개인 사용자 정보이므로 자신만 수정할 수 있습니다.")
@@ -57,4 +58,6 @@ public class UserAuthUserController {
         userBusiness.deleteUser(id);
         return Api.OK(null);
     }
+*/
+
 }

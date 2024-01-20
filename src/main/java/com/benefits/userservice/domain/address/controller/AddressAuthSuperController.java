@@ -22,13 +22,13 @@ public class AddressAuthSuperController {
 
     private final UserAddressBusiness userAddressBusiness;
 
-    @Operation(summary = "관리자의 권한으로 특정 사용자의 주소 등록", description = "등록된 특정 사용자의 주소를 등록합니다.")
+    /*@Operation(summary = "관리자의 권한으로 특정 사용자의 주소 등록", description = "등록된 특정 사용자의 주소를 등록합니다.")
     @PostMapping(path = "/address" , params = "user_id")
     public Api<UserAddressResponse> registerProfile(@Parameter(example = "1") @RequestParam(value = "user_id") Long userId,
                                                     @RequestBody @Valid UserAddressRequest request) {
         var response = userAddressBusiness.register(userId, request);
         return Api.CREATE(response.getData());
-    }
+    }*/
 
     @Operation(summary = "관리자의 권한으로 특정 사용자의 모든 주소 조회", description = "등록된 특정 사용자의 모든 주소를 조회합니다.")
     @GetMapping(path = "/address", params = "user_id")
@@ -36,6 +36,7 @@ public class AddressAuthSuperController {
         var response = userAddressBusiness.getAllUserAddressByUserId(userId);
         return Api.OK(response.getData());
     }
+/*
 
     @Operation(summary = "관리자의 권한으로 사용자 특정 주소 수정", description = "등록된 사용자의 특정 주소를 수정합니다." +
             "<br><br> 주소는 user_id당 최대 3개까지 등록될 수 있기 때문에 " +
@@ -58,5 +59,6 @@ public class AddressAuthSuperController {
         userAddressBusiness.deleteAddress(id, userId);
         return Api.OK(null);
     }
+*/
 
 }
