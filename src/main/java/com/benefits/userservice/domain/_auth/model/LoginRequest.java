@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class LoginRequest {
 
-    @Schema( type = "string", example = "your_email@gmail.com", description = "이메일 형식")
+    @Schema( type = "string", example = "testUser1@aaa.com", description = "이메일 형식")
     private String email;
 
-    @Schema( type = "string", example = "your_password")
+    @Schema( type = "string", example = "uP@sswr0d!11")
     private String password;
 }
