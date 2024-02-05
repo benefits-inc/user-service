@@ -1,12 +1,9 @@
 package com.benefits.userservice.domain._auth.controller;
 
 
-import com.benefits.userservice.common.spec.Api;
-import com.benefits.userservice.config.security.auth.model.UserSession;
 import com.benefits.userservice.domain._auth.business.AuthenticationBusiness;
 import com.benefits.userservice.domain._auth.model.LoginRequest;
 import com.benefits.userservice.domain._auth.model.TokenResponse;
-import com.benefits.userservice.domain._auth.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,11 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/open-api")
 @RequiredArgsConstructor
 @Tag(name = "Authentication", description = "사용자의 로그인과 로그인 연장을 담당하는 API 입니다")
 public class AuthenticationController {
@@ -46,4 +42,6 @@ public class AuthenticationController {
                 .header("access_token", responseToken.getAccessToken()) //accessToken은 헤더로 내려줄지 바디로 내려줄지 선택
                 .body(responseToken);
     }
+
+
 }
