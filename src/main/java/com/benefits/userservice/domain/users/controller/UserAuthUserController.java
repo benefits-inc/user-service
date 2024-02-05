@@ -3,6 +3,7 @@ package com.benefits.userservice.domain.users.controller;
 import com.benefits.userservice.aop.annotation.UserSelfRole;
 import com.benefits.userservice.common.spec.Api;
 import com.benefits.userservice.domain._auth.business.AuthenticationBusiness;
+import com.benefits.userservice.domain._auth.model.TokenResponse;
 import com.benefits.userservice.domain.users.business.UserBusiness;
 import com.benefits.userservice.domain.users.model.UserResponse;
 import com.benefits.userservice.domain.users.model.UserUpdateRequest;
@@ -12,6 +13,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -59,6 +62,15 @@ public class UserAuthUserController {
     public Api<UserResponse> deleteUser(@Parameter(example = "1") @PathVariable(name = "id") Long id){
         userBusiness.deleteUser(id);
         return Api.OK(null);
+    }
+
+    @Operation(summary = "사용자 로그인 연장", description = "보안 쿠키의 refreshToken을 이용하여 새로운 accessToken을 발급합니다.")
+    @GetMapping("/restore")
+    public ResponseEntity<TokenResponse> restore(HttpServletRequest request){
+        var responseToken = authenticationBusiness.restore(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("access_token", responseToken.getAccessToken()) //accessToken은 헤더로 내려줄지 바디로 내려줄지 선택
+                .body(responseToken);
     }
 
     @Operation(summary = "사용자 로그아웃", description = "로그아웃 시 redis에 사용하지 않을 accessToken과 refreshToken을 ttl과 함께 등록합니다." +
