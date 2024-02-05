@@ -39,7 +39,8 @@ public class SwaggerConfig implements EnvironmentAware {
     private Environment env;
     @Bean
     GroupedOpenApi usersOpenApi(){
-        String[] path = {"/open-api/**", "/login", "/restore"};
+        // String[] path = {"/open-api/**", "/login", "/logout", "/restore"};
+        String[] path = {"/open-api/**"};
 
         return GroupedOpenApi.builder()
                 .group("1. USER-SERVICE - OPEN API")
