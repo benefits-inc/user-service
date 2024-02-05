@@ -4,6 +4,8 @@ import com.benefits.userservice.common.exception.ApiException;
 import com.benefits.userservice.common.resultcode.TokenResultCode;
 import com.benefits.userservice.domain._token.ifs.TokenHelperIfs;
 import com.benefits.userservice.domain._token.model.TokenDto;
+import com.benefits.userservice.domain._token.payload.Payload;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,12 +16,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Component
 @Primary
@@ -104,5 +104,20 @@ public class JwtTokenHelper implements TokenHelperIfs {
                 throw new ApiException(TokenResultCode.TOKEN_EXCEPTION);
             }
         }
+    }
+
+    @Override
+    public Payload payloadParser(String token) {
+        var token_payload = token.split("\\.")[1];
+        byte[] decodedPayloadByte = Base64.getDecoder().decode(token_payload);
+
+        Payload payload = null;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            payload = objectMapper.readValue(decodedPayloadByte, Payload.class);
+        } catch (IOException e) {
+            throw new ApiException(TokenResultCode.INVALID_PAYLOAD);
+        }
+        return payload;
     }
 }
