@@ -1,6 +1,7 @@
 package com.benefits.userservice.domain._auth.service;
 
 import com.benefits.userservice.common.exception.ApiException;
+import com.benefits.userservice.common.resultcode.TokenResultCode;
 import com.benefits.userservice.common.resultcode.UserResultCode;
 import com.benefits.userservice.db.entity.users.UserEntity;
 import com.benefits.userservice.domain._auth.model.TokenResponse;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -57,11 +59,9 @@ public class AuthenticationService {
 
     public void logout(HttpServletRequest request){
 
-        var authorization = request.getHeader("Authorization");
-
-        if(authorization == null || authorization.isEmpty() || authorization.isBlank()){
-            throw new ApiException(UserResultCode.BAD_REQUEST, "Not valid accessToken Header");
-        }
+        // 이미 gateway-service 에서 null, invalid 검증하긴 하긴 함..
+        var authorization= Optional.of(request.getHeader("Authorization"))
+                .orElseThrow(() -> new ApiException(TokenResultCode.AUTHORIZATION_TOKEN_NOT_FOUND));
 
         var accessToken = authorization.replace("Bearer ", "");
 
@@ -72,14 +72,12 @@ public class AuthenticationService {
         redisTemplate.expireAt(accessToken, accessTokenExpiredAt);
 
 
-        var cookies = Arrays.stream(request.getCookies()).filter(cookie -> {
-            return cookie.getName().equals("refreshToken");
-        }).toList();
+        var refreshTokenCookie = Arrays.stream(request.getCookies())
+                .filter(it ->{
+                    return it.getName().equals("refreshToken");
+                }).findAny().orElseThrow(() -> new ApiException(TokenResultCode.AUTHORIZATION_TOKEN_NOT_FOUND));
 
-        if(cookies.isEmpty()){
-             throw new ApiException(UserResultCode.BAD_REQUEST, "Not valid refreshToken Cookie");
-        }
-        var refreshToken = cookies.get(0).getValue();
+        var refreshToken = refreshTokenCookie.getValue();
         var refreshTokenPayload = tokenService.payloadParser(refreshToken);
         var refreshTokenExpiredAt = new Date(Long.parseLong(refreshTokenPayload.getExp()) * 1000L);
         redisTemplate.opsForValue().set(refreshToken, refreshToken);
