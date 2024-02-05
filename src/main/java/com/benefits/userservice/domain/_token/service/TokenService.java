@@ -1,10 +1,9 @@
 package com.benefits.userservice.domain._token.service;
 
-
-import com.benefits.userservice.config.security.auth.model.UserSession;
 import com.benefits.userservice.db.entity.users.UserEntity;
 import com.benefits.userservice.domain._token.ifs.TokenHelperIfs;
 import com.benefits.userservice.domain._token.model.TokenDto;
+import com.benefits.userservice.domain._token.payload.Payload;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +38,9 @@ public class TokenService {
         Optional.ofNullable(email)
                 .orElseThrow(() -> new RuntimeException("Token email is null"));
         return String.valueOf(email);
+    }
+
+    public Payload payloadParser(String token){
+        return tokenHelperIfs.payloadParser(token);
     }
 }

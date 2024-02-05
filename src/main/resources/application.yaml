@@ -1,12 +1,12 @@
 server:
-  port: 0
+  port: 3535
 
 spring:
   application:
     name: user-service
 
   profiles:
-    include: eureka, config, actuator, rabbitmq, zipkin, swagger
+    include: eureka, config, actuator, rabbitmq, zipkin, redis, swagger
 
 
 #logging:

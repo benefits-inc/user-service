@@ -4,6 +4,8 @@ import com.benefits.userservice.common.annotation.Business;
 import com.benefits.userservice.common.exception.ApiException;
 import com.benefits.userservice.common.resultcode.TokenResultCode;
 import com.benefits.userservice.common.resultcode.UserResultCode;
+import com.benefits.userservice.common.spec.Api;
+import com.benefits.userservice.common.spec.Result;
 import com.benefits.userservice.domain._auth.model.LoginRequest;
 import com.benefits.userservice.domain._auth.model.TokenResponse;
 import com.benefits.userservice.domain._auth.service.AuthenticationService;
@@ -62,4 +64,14 @@ public class AuthenticationBusiness {
 
         return authenticationService.restore(userEntity);
     }
+
+    public Api<String> logout(HttpServletRequest request){
+        authenticationService.logout(request);
+        var resultOk = Result.OK();
+        resultOk.setResultDescription("로그아웃 처리 되었습니다.");
+        return Api.<String>builder()
+                .result(resultOk)
+                .build();
+    }
+
 }
